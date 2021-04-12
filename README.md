@@ -15,7 +15,7 @@ Kelompok 9
 3. Clone repository ini
    - Buka terminal
    - cd ke directory yang diinginkan
-   - Lakukan command `git clone https://github.com/MaxdhaMax/RPL-9-Reservasi_Ruangan.git RoomBook'
+   - Lakukan command `git clone https://github.com/MaxdhaMax/RPL-9-Reservasi_Ruangan.git RoomBook`
 4. Copy file .env yang diberikan ke folder `WebApp` di `RoomBook\WebApp`
 5. Install requirementnya
    - `cd RoomBook`
