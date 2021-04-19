@@ -1,0 +1,74 @@
+body {
+    width: 100%;
+    height: auto;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#8BA5FF), color-stop(#fff), to(#fff));
+    background-image: linear-gradient(#f76dbf,#97abf1, rgb(253, 253, 253));
+    margin-bottom: 50px;
+  }
+  
+  .container {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FF2DAB), color-stop(#8BA5FF), to(#fff));
+    background-image: linear-gradient(#FF2DAB, #8BA5FF, #fff);
+    width: 40%;
+    border-radius: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .container .image-logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 45px;
+    margin-top: 30px;
+  }
+  
+  .container .image-logo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-top: 20px;
+  }
+  
+  .container form {
+    width: 250px;
+    height: auto;
+    margin: auto;
+    border-radius: 15px;
+    background-image: radial-gradient(#00A3FF, #2738D8);
+    background-color: #2738D8;
+  }
+  
+  .container form .mb-2 {
+    margin-left: 15px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  .container form .mb-2 label {
+    margin-top: 15px;
+    color: white;
+  }
+  
+  .container form .mb-3 {
+    margin-top: 30px;
+    margin-left: 18px;
+    color: white;
+  }
+  
+  .container form .form-control {
+    width: 90%;
+  }
+  
+  .container form button {
+    margin-left: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .container form button:hover {
+    background-color: #5c3c3c;
+    color: #941414;
+  }
+  /*# sourceMappingURL=login.css.map */
