@@ -3,23 +3,23 @@ body {
     height: auto;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#8BA5FF), color-stop(#fff), to(#fff));
     background-image: linear-gradient(#f76dbf,#97abf1, rgb(253, 253, 253));
-    margin-bottom: 50px;
+    background-repeat: no-repeat;
   }
   
   .container {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#FF2DAB), color-stop(#8BA5FF), to(#fff));
     background-image: linear-gradient(#FF2DAB, #8BA5FF, #fff);
-    width: 40%;
+    width: 35%;
     border-radius: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
   }
   
   .container .image-logo {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 45px;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-top: 25px;
   }
   
   .container .image-logo img {
