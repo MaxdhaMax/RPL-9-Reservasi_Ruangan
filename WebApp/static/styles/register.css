@@ -1,0 +1,58 @@
+body {
+    width: 100%;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FF2DAB), color-stop(#8BA5FF), to(#fff));
+    background-image: linear-gradient(#FF2DAB, #8BA5FF, #fff);
+    background-repeat: no-repeat;
+    height: auto;
+  }
+  
+  .container-utama {
+    width: 35%;
+    height: auto;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 60px;
+    background-image: radial-gradient(#00A3FF, #2738D8);
+    background-color: #2738D8;
+    -webkit-box-shadow: 5px 5px 5px black;
+            box-shadow: 5px 5px 5px black;
+  }
+  
+  .container-utama h2 {
+    text-align: center;
+    padding-top: 30px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: white;
+    padding-bottom: 30px;
+  }
+  
+  .container-utama .container-form {
+    margin: auto;
+    width: 80%;
+    padding-top: 10px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  .container-utama .container-form form {
+    width: 70%;
+    margin-left: 40px;
+    border-radius: 15px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-bottom: 15px;
+  }
+  
+  .container-utama .container-form form label {
+    color: white;
+  }
+  
+  .container-utama .container-form form input {
+    width: 100%;
+  }
+  
+  .container-utama .container-form form button {
+    margin-left: 100px;
+  }
+  /*# sourceMappingURL=register.css.map */

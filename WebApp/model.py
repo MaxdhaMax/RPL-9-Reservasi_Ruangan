@@ -46,3 +46,28 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.datePosted}')"
+
+
+class Room(db.Model):
+    id = db.Column("id", db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    rtype = db.Column(db.String(50), nullable=False)
+    information = db.Column(db.Text, nullable=False)
+    person_in_charge = db.relationship(
+        "Person_In_Charge", backref="pic", lazy=True)
+    image_file = db.Column(db.String(20), nullable=False,
+                           default="default.png")
+
+    def __repr__(self):
+        return f"User('{self.name}', '{self.location}', '{self.rtype}')"
+
+
+class Person_In_Charge(db.Model):
+    id = db.Column("id", db.Integer, primary_key=True)
+    name = db.Column(db.String(30), nullable=False)
+    number = db.Column(db.String(20), nullable=False)
+    room_id = db.Column(db.Integer, db.ForeignKey('room.id'), nullable=False)
+
+    def __repr__(self):
+        return f"User('{self.name}', '{self.number}')"
