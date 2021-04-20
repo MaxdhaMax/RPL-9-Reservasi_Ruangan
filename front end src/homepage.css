@@ -7,7 +7,6 @@ header {
   height: auto;
   background-color: #2738D8;
   padding-top: 15px;
-  margin-bottom: 30px;
 }
 
 .container {
@@ -15,8 +14,8 @@ header {
 }
 
 .custom-nav .navbar-brand img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 }
 
@@ -44,6 +43,7 @@ header {
   width: auto;
   height: 50%;
   margin-bottom: 45px;
+  margin-top: -40px;
 }
 
 .carousel img {
