@@ -2,7 +2,7 @@ body {
     width: 100%;
     height: auto;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#8BA5FF), color-stop(#fff), to(#fff));
-    background-image: linear-gradient(#f76dbf,#97abf1, rgb(253, 253, 253));
+    background-image: linear-gradient(#FF2DAB, #8BA5FF, #fff);
     background-repeat: no-repeat;
   }
   
