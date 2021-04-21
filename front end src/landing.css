@@ -1,0 +1,42 @@
+body {
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FF2DAB), color-stop(#8BA5FF), to(#fff));
+  background-image: linear-gradient(#FF2DAB, #8BA5FF, #fff);
+  width: 100%;
+  padding-top: 50px;
+}
+
+header .image-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 45px;
+  margin-top: 45px;
+}
+
+header .image-logo img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+content {
+  text-align: center;
+}
+
+content a {
+  color: blue;
+  font-style: default;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: black;
+  color: white;
+}
+/*# sourceMappingURL=landingmax.css.map */
