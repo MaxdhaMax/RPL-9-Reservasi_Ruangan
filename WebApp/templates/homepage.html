@@ -39,10 +39,10 @@
                             </ul>
                             <div class="nav-profile">
                                 <li class="nav-item dropdown" style="color: white; display: flex; margin-right: -100px; margin-left: 100px;">
-                                    <img src="{{url_for('static',filename='images/' + p_image)}}" style="flex: 3;   margin-left: 30px; margin-right: -30px;
+                                    <img src="{{url_for('static',filename='images/' + current_user.image_file)}}" style="flex: 3;   margin-left: 30px; margin-right: -30px;
                                     width: 70px; height: 70px; border-radius: 50%;" alt="">
                                     <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <!-- Nama username nya--> {{username}}
+                                    <!-- Nama username nya--> {{current_user.username}}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -90,39 +90,33 @@
         <div class="container-content">
             <div class="search">
                 <h3>Cari Ruangan</h3>
-                <form>
+                <form method="POST" action="#">
                     <div class="mb-3">
                         <label for="Ruangan" class="form-label">Ruangan</label>
-                        <input type="ruangan" class="form-control" id="nama-ruangan">
+                        <input type="text" class="form-control" id="nama-ruangan" name="ruangan" value="{{search}}"/>
                     </div>
                     <div class="mb-3">
                         <label for="check-in" class="form-label">Check-in : </label>
-                        <input id="check-in" class="form-control" type="date" value=""/>
+                        <input id="check-in" class="form-control" type="date" value="" name="checkin"/>
                     </div>
                     <div class="mb-3">
                         <label for="check-out" class="form-label">Check-out : </label>
-                        <input id="check-out" class="form-control" type="date" value=""/>
+                        <input id="check-out" class="form-control" type="date" value="" name="checkout"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="cari" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="keterangan">
+            {% for room in rooms %}
                 <div class="lokasi">
-                    <img src="{{url_for('static',filename='images/logo.jpeg')}}" alt="">
-                    <p>Ruangan ....</p>
+                    <img src="{{url_for('static',filename='images/' + room.image_file)}}" alt="">
+                    <div>
+                        <h2>{{room.name}}</h2>
+                        <h3>{{room.location}}</h3>
+                        <h3>{{room.room_type}}</h3>
+                    </div>
                 </div>
-                <div class="lokasi">
-                    <img src="{{url_for('static',filename='images/logo.jpeg')}}" alt="">
-                    <p>Ruangan ....</p>
-                </div>
-                <div class="lokasi">
-                    <img src="{{url_for('static',filename='images/logo.jpeg')}}" alt="">
-                    <p>Ruangan ....</p>
-                </div>
-                <div class="lokasi">
-                    <img src="{{url_for('static',filename='images/logo.jpeg')}}" alt="">
-                    <p>Ruangan ....</p>
-                </div>
+            {% endfor %}
             </div>
         </div>
     </content>
