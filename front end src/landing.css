@@ -1,42 +1,70 @@
 body {
-  height: 100%;
-  width: 100%;
+  background-color: #212121;
+  color: white;
 }
 
-header {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#FF2DAB), color-stop(#8BA5FF), to(#fff));
-  background-image: linear-gradient(#FF2DAB, #8BA5FF, #fff);
-  width: 100%;
-  padding-top: 50px;
-}
-
-header .image-logo {
+body .container-utama header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 45px;
-  margin-top: 45px;
 }
 
-header .image-logo img {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
+body .container-utama header img {
+  width: 250px;
+  height: 250px;
   margin: auto;
+  margin-top: 60px;
+  border-radius: 50%;
+  margin-bottom: 60px;
 }
 
-content {
+body .container-utama main {
+  background-image: url("image/bigben.png");
+  background-repeat: no-repeat;
+  background-size: 1264px 490px;
+  background-position: bottom right;
+  height: 500px;
+  padding-top: 35px;
+}
+
+body .container-utama main .text {
+  margin-top: 35px;
+}
+
+body .container-utama main .text h4 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+body .container-utama main .text h3 {
+  text-align: center;
+  margin-top: 120px;
+}
+
+body .container-utama main .text h6 {
+  margin-top: -25px;
   text-align: center;
 }
 
-content a {
-  color: blue;
-  font-style: default;
+body .container-utama main .text a {
+  color: #BB86FC;
   text-decoration: none;
 }
 
-a:hover {
+body .container-utama footer {
   background-color: black;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .container-utama footer h6 {
+  text-align: center;
+  margin: auto;
+}
+
+body .container-utama footer i {
   color: white;
 }
-/*# sourceMappingURL=landingmax.css.map */
+/*# sourceMappingURL=landing.css.map */
