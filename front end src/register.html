@@ -7,39 +7,36 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-    <title>RoomBook</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>RoomBook_Register</title>
   </head>
   <body>
-    <div class="container-utama">
-        <h2 class="judul"> Register</h2>
-        <div class="container-form">
-            <form>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="username" class="form-control form-control-sm" id="username" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="Email" class="form-label">Email address</label>
-                    <input type="Email" class="form-control form-control-sm" id="Email" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control form-control-sm" id="Password">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Repeat Password</label>
-                    <input type="password" class="form-control form-control-sm" id="PasswordRepeat">
-                </div>
-                <div class="mb-3"></div>
-                    <button type="submit" class="btn button-custom" style="background-color: rgb(55, 214, 235);">Register</button>
-                </div>
-            </form>
-        </div>
-        <h6 style="margin-left: 450px; margin-top: 20px;">Already have an account? <a href="login.html" style="text-decoration: none;"><i>Log in</i></a></h6>
+    <div class="container-utama" data-aos="zoom-in" data-aos-duration="1000">
+            <i class="fas fa-user-circle logo" data-aos="flip-left" data-aos-delay="1000"  data-aos-duration="1000" ></i>
+            <div class="container-form">
+                <form>
+                    <div class="mb-3" data-aos="fade-up" data-aos-delay="1000">
+                        <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Username">
+                    </div>
+                    <div class="mb-3" data-aos="fade-up" data-aos-delay="1500">
+                        <input type="email" class="form-control-plaintext" id="inputEmail" placeholder="Email">
+                    </div>
+                    <div class="mb-3" data-aos="fade-up" data-aos-delay="2000">
+                        <input type="password" class="form-control-plaintext" id="inputPassword" placeholder="Password">
+                    </div>
+                    <div class="mb-3" data-aos="fade-up" data-aos-delay="2500">
+                        <input type="password" class="form-control-plaintext" id="inputRepeatPassword" placeholder="Repeat Password">
+                    </div>
+                    <button type="register" class="btn btn-sm" style="background-color:#BB86FC; 
+                    margin-left: 150px; margin-top: 15px;" data-aos="fade-up" data-aos-delay="3000">Register</button>
+                </form>
+            </div>
     </div>
 
+    <h6 data-aos="fade-up" data-aos-duration="1000">Already have an account? <a href="login.html" style="text-decoration: none;
+      "><i style="color: #BB86FC;">Log in</i></a></h6>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -50,5 +47,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
