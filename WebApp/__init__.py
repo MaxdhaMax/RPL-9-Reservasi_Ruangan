@@ -6,6 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from WebApp.config import Config
 from elasticsearch import Elasticsearch
+import os
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()

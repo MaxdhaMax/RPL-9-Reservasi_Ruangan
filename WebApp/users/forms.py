@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from WebApp.model import User
@@ -27,6 +27,47 @@ class RegistrationForm(FlaskForm):
         if (user):
             raise ValidationError(
                 'That email is taken, please choose another one.')
+
+
+class RegistrationTypeForm(FlaskForm):
+    choice = ["Mahasiswa", "Dosen", "Staff"]
+    user_type = SelectField("Siapakah Anda", validators=[
+                            DataRequired()], choices=choice)
+    submit = SubmitField("Pilih")
+
+
+class MahasiswaRegistrationForm(FlaskForm):
+    nim = StringField("NIM", validators=[
+        DataRequired(), Length(max=12)])
+    nama = StringField("NIM", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    departemen = StringField("Departemen", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    fakultas = StringField("Fakultas", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    angkatan = IntegerField("Angkatan", validators=[
+        DataRequired()])
+    submit = SubmitField("Pilih")
+
+
+class DosenRegistrationForm(FlaskForm):
+    nik = StringField("NIK", validators=[
+        DataRequired(), Length(max=12)])
+    nama = StringField("NIM", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    departemen = StringField("Departemen", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    fakultas = StringField("Fakultas", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    submit = SubmitField("Pilih")
+
+
+class StaffRegistrationForm(FlaskForm):
+    nik = StringField("NIK", validators=[
+        DataRequired(), Length(max=12)])
+    nama = StringField("NIM", validators=[
+        DataRequired(), Length(min=2, max=30)])
+    submit = SubmitField("Pilih")
 
 
 class LoginForm(FlaskForm):

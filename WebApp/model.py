@@ -72,9 +72,14 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False,
                            default="default.png")
     password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship("Post", backref="author", lazy=True)
     rooms = db.relationship("Room", secondary=room_book, lazy="subquery",
                             backref=db.backref("rooms", lazy=True))
+    mahasiswa = db.relationship(
+        "Mahasiswa", backref="mhs", lazy=True)
+    dosen = db.relationship(
+        "Dosen", backref="dsn", lazy=True)
+    staff = db.relationship(
+        "Staff", backref="stf", lazy=True)
 
     def get_reset_token(self, expire_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expire_sec)
@@ -91,6 +96,29 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+
+class Mahasiswa(User):
+    id = db.Column("id", db.Integer, db.ForeignKey(User.id), primary_key=True)
+    nim = db.Column(db.String(12), nullable=False)
+    nama = db.Column(db.String(30), nullable=False)
+    departemen = db.Column(db.String(30), nullable=False)
+    fakultas = db.Column(db.String(30), nullable=False)
+    angkatan = db.Column(db.Integer, nullable=False)
+
+
+class Dosen(User):
+    id = db.Column("id", db.Integer, db.ForeignKey(User.id), primary_key=True)
+    nik = db.Column(db.String(12), nullable=False)
+    nama = db.Column(db.String(30), nullable=False)
+    departemen = db.Column(db.String(30), nullable=False)
+    fakultas = db.Column(db.String(30), nullable=False)
+
+
+class Staff(User):
+    id = db.Column("id", db.Integer, db.ForeignKey(User.id), primary_key=True)
+    nik = db.Column(db.String(12), nullable=False)
+    nama = db.Column(db.String(30), nullable=False)
 
 
 class Post(db.Model):
