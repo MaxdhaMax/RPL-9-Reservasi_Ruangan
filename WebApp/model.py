@@ -3,8 +3,6 @@ from WebApp import db, loginManager
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
-from whoosh.analysis import StemmingAnalyzer
-import flask_whooshalchemy
 
 
 @loginManager.user_loader
@@ -83,7 +81,6 @@ class Post(db.Model):
 class Room(db.Model):
     __tablename__ = 'room'
     __searchable__ = ['name', 'location', 'room_type']
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
