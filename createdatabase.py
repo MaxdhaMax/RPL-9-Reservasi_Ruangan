@@ -1,11 +1,54 @@
-from WebApp import db, create_app, search, bcrypt
+from WebApp import db, create_app, bcrypt
 from WebApp.model import Room, User
+import random
 
 
 def drop_database(app):
     with app.app_context():
-        print("[+] Dropping all current database")
         db.drop_all()
+
+
+def drop_everything(app):
+    print("[+] Dropping all current database")
+    """(On a live db) drops all foreign key constraints before dropping all tables.
+    Workaround for SQLAlchemy not doing DROP ## CASCADE for drop_all()
+    (https://github.com/pallets/flask-sqlalchemy/issues/722)
+    """
+    from sqlalchemy.engine.reflection import Inspector
+    from sqlalchemy.schema import DropConstraint, DropTable, MetaData, Table
+
+    with app.app_context():
+        con = db.engine.connect()
+        trans = con.begin()
+        inspector = Inspector.from_engine(db.engine)
+
+        # We need to re-create a minimal metadata with only the required things to
+        # successfully emit drop constraints and tables commands for postgres (based
+        # on the actual schema of the running instance)
+        meta = MetaData()
+        tables = []
+        all_fkeys = []
+
+        for table_name in inspector.get_table_names():
+            fkeys = []
+
+            for fkey in inspector.get_foreign_keys(table_name):
+                if not fkey["name"]:
+                    continue
+
+                fkeys.append(db.ForeignKeyConstraint(
+                    (), (), name=fkey["name"]))
+
+            tables.append(Table(table_name, meta, *fkeys))
+            all_fkeys.extend(fkeys)
+
+        for fkey in all_fkeys:
+            con.execute(DropConstraint(fkey))
+
+        for table in tables:
+            con.execute(DropTable(table))
+
+        trans.commit()
 
 
 def create_database(app):
@@ -88,7 +131,7 @@ def create_mockData(app):
             room_type = RoomList[i][2]
             information = RoomList[i][3]
             room = Room(name=name, location=location,
-                        room_type=room_type, information=information)
+                        room_type=room_type, information=information, capacity=random.randint(100, 150))
             db.session.add(room)
             db.session.commit()
 
@@ -99,6 +142,6 @@ def create_mockData(app):
 
 if __name__ == "__main__":
     app = create_app()
-    drop_database(app)
+    drop_everything(app)
     create_database(app)
     create_mockData(app)

@@ -1,266 +1,266 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" href="{{url_for('static', filename="styles/homepage.css")}}">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<link rel="stylesheet" href="{{url_for('static', filename="styles/homepage.css")}}">
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <title>RoomBook_Homepage</title>
-  </head>
-  <body>
-    <header>
-        <div class="container my-4">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light custom-nav">
-                <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <a class="navbar-brand" href="#">
-                            <img style="margin-top: -15px;" src="{{url_for('static', filename="images/logo.jpeg")}}">
-                            <span>ROOMBOOK</span>
-                        </a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link" style="color: #BB86FC;" href="{{url_for('main.home')}}">Home</a>
-                            <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Ruangan</a>
-                            <div class="nav-profile">
-                                <li class="nav-item dropdown" style="color: white; display: flex;">
-                                    <img src="{{url_for('static', filename="images/" + current_user.image_file)}}" style="flex: 3;  margin-left: 25px;
-                                    width: 60px; height: 60px; border-radius: 50%;" alt="">
-                                    <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{current_user.username}}
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #3D3D3D;">
-                                            <li><a class="dropdown-item" href="#" style="color: white;">Profile</a></li>
-                                            <li><a class="dropdown-item" href="#" style="color: white; border-bottom: 1px solid white;">History</a></li>
-                                            <li><a class="dropdown-item" href="{{url_for('users.logout')}}" style="color: #BB86FC;">Log Out</a></li>
-                                    </ul>
-                                </li>
-                            </div>
-                            
+<title>RoomBook_Homepage</title>
+</head>
+<body>
+<header>
+    <div class="container my-4">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light custom-nav">
+            <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <a class="navbar-brand" href="#">
+                        <img style="margin-top: -15px;" src="{{url_for('static', filename="images/logo.jpeg")}}">
+                        <span>ROOMBOOK</span>
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" style="color: #BB86FC;" href="{{url_for('main.home')}}">Home</a>
+                        <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Ruangan</a>
+                        <div class="nav-profile">
+                            <li class="nav-item dropdown" style="color: white; display: flex;">
+                                <img src="{{url_for('static', filename="images/" + current_user.image_file)}}" style="flex: 3;  margin-left: 25px;
+                                width: 60px; height: 60px; border-radius: 50%;" alt="">
+                                <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{current_user.username}}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #3D3D3D;">
+                                        <li><a class="dropdown-item" href="{{url_for('users.account')}}" style="color: white;">Profile</a></li>
+                                        <li><a class="dropdown-item" href="#" style="color: white; border-bottom: 1px solid white;">History</a></li>
+                                        <li><a class="dropdown-item" href="{{url_for('users.logout')}}" style="color: #BB86FC;">Log Out</a></li>
+                                </ul>
+                            </li>
                         </div>
+                        
                     </div>
                 </div>
-            </nav>
-        </div> <br> <br>
-        <!-- Carousel -->
-        <div class="row">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                  {% if messages %}
-                    {% for category, message in messages %}
-                      <div class="alert alert-{{ category }} d-flex justify-content-center">
-                        {{ message }}
-                      </div>
-                    {% endfor %}
-                  {% endif %}
-                {% endwith %}
-        </div>
-        <div class="carousel" data-aos="zoom-in" data-aos-duration="1000">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{url_for('static', filename="images/Foto CCR - Resized.jpg")}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{url_for('static', filename="images/Foto Dept Ilkom - Resized.jpg")}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{url_for('static', filename="images/Foto Rektorat - Resized.jpg")}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{url_for('static', filename="images/Foto Rektorat - Top View - Resized.jpg")}}" class="d-block w-100" alt="...">
-                </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
-        </div>
-        </div>
-    </header>
-    <content>
-        <div class="container-content">
-            <!-- Bagian Search -->
-            <div class="search" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="250">
-                <h3>Cari Ruangan</h3>
-                <form method="POST" action="" autocomplete="off">
-                    {{  form.hidden_tag()   }}
-                    <div class="mb-3">
-                    {{ form.ruangan.label(class="form-control-label") }}
-                        {% if form.ruangan.errors %}
-                            {{ form.ruangan(class="form-control is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.ruangan.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.ruangan(class="form-control",id="autocomplete", placeholder="Nama, Lokasi, atau Tipe Ruangan") }}
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                    {{ form.check_in.label(class="form-control-label") }}
-                        {% if form.check_in.errors %}
-                            {{ form.check_in(class="form-control is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.check_in.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.check_in(class="form-control") }}
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                    {{ form.check_out.label(class="form-control-label") }}
-                        {% if form.check_out.errors %}
-                            {{ form.check_out(class="form-control is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.check_out.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.check_out(class="form-control") }}
-                        {% endif %}
-                    </div>
-                    {{form.submit(class = "btn btn-sm", style="background-color: #BB86FC; width: 100%; margin-top: 10px;")}}
-                </form>
             </div>
-            <div class="keterangan" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="250">
-                <!-- Bagian Filter -->
-                {% if rooms %}
-                <div class="filter">
-                    <button class="btn btn-sm" type="submit">Filter</button>
-                    <button class="btn btn-sm" type="submit">Filter</button>
-                    <button class="btn btn-sm" type="submit">Filter</button>
-                    <button class="btn btn-sm" type="submit">Filter</button>
-                </div>
-                {% endif %}
-                {% for room in rooms %}
-                <div class="lokasi">
-                    <img src="{{url_for('static', filename="images/" + room.image_file)}}" alt="">
-                    <div class="detail">
-                        <h4><a href="">{{room.name}}</a></h4>
-                        <h5>{{room.location}} - {{room.room_type}}</h5>
-                        {% if room.information|length > 150 %}
-                            <p>{{room.information[0:150] + " ...."}}</p>
-                        {% else %}
-                            <p>{{room.information}}</p>
-                        {% endif %}
-                        <button class="btn btn-sm" type="submit">Pesan</button>
-                    </div>
+        </nav>
+    </div> <br> <br>
+    <!-- Carousel -->
+    <div class="row">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} d-flex justify-content-center">
+                    {{ message }}
                 </div>
                 {% endfor %}
+            {% endif %}
+            {% endwith %}
+    </div>
+    <div class="carousel" data-aos="zoom-in" data-aos-duration="1000">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{url_for('static', filename="images/Foto CCR - Resized.jpg")}}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{{url_for('static', filename="images/Foto Dept Ilkom - Resized.jpg")}}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{{url_for('static', filename="images/Foto Rektorat - Resized.jpg")}}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{{url_for('static', filename="images/Foto Rektorat - Top View - Resized.jpg")}}" class="d-block w-100" alt="...">
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+    </div>
+    </div>
+</header>
+<content>
+    <div class="container-content">
+        <!-- Bagian Search -->
+        <div class="search" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="250">
+            <h3>Cari Ruangan</h3>
+            <form method="POST" action="" autocomplete="off">
+                {{  form.hidden_tag()   }}
+                <div class="mb-3">
+                {{ form.ruangan.label(class="form-control-label") }}
+                    {% if form.ruangan.errors %}
+                        {{ form.ruangan(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ruangan.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ruangan(class="form-control",id="autocomplete", placeholder="Nama, Lokasi, atau Tipe Ruangan") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                {{ form.check_in.label(class="form-control-label") }}
+                    {% if form.check_in.errors %}
+                        {{ form.check_in(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.check_in.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.check_in(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                {{ form.check_out.label(class="form-control-label") }}
+                    {% if form.check_out.errors %}
+                        {{ form.check_out(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.check_out.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.check_out(class="form-control") }}
+                    {% endif %}
+                </div>
+                {{form.submit(class = "btn btn-sm", style="background-color: #BB86FC; width: 100%; margin-top: 10px;")}}
+            </form>
         </div>
-        <div class="container-abt" style="padding-top:300px;">
-            <h2 data-aos="fade-up" data-aos-duration="1500">About Us</h2>
-            <div class="profile" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
-                <img src="{{url_for('static', filename="images/logo.jpeg")}}">
-                <h4>Maxdha</h4>
-                <h5 style="margin-top: 10px;">" <i>Project Manager</i> "</h5>
-                <h5 style="margin-top: 10px;">G64190105</h5>
-                <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
+        <div class="keterangan" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="250">
+            <!-- Bagian Filter -->
+            {% if rooms %}
+            <div class="filter">
+                <button class="btn btn-sm" type="submit">Filter</button>
+                <button class="btn btn-sm" type="submit">Filter</button>
+                <button class="btn btn-sm" type="submit">Filter</button>
+                <button class="btn btn-sm" type="submit">Filter</button>
             </div>
-            <div class="profile" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="750">
-                <img src="{{url_for('static', filename="images/logo.jpeg")}}">
-                <h4>Jevon</h4>
-                <h5 style="margin-top: 10px;">" <i>UI / UX</i> "</h5>
-                <h5 style="margin-top: 10px;">G64190105</h5>
-                <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
+            {% endif %}
+            {% for room in rooms %}
+            <div class="lokasi">
+                <img src="{{url_for('static', filename="images/" + room.image_file)}}" alt="">
+                <div class="detail">
+                    <h4><a href="">{{room.name}}</a></h4>
+                    <h5>{{room.location}} - {{room.room_type}} ({{room.capacity}})</h5>
+                    {% if room.information|length > 150 %}
+                        <p>{{room.information[0:150] + " ...."}}</p>
+                    {% else %}
+                        <p>{{room.information}}</p>
+                    {% endif %}
+                    <button class="btn btn-sm" type="submit">Pesan</button>
+                </div>
             </div>
-            <div class="profile" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="1000">
-                <img src="{{url_for('static', filename="images/logo.jpeg")}}">
-                <h4>Ammar</h4>
-                <h5 style="margin-top: 10px;">" <i>Front End</i> "</h5>
-                <h5 style="margin-top: 10px;">G64190105</h5>
-                <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
-            </div>
-            <div class="profile" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="1250">
-                <img src="{{url_for('static', filename="images/logo.jpeg")}}">
-                <h4>Daffa</h4>
-                <h5 style="margin-top: 10px;">" <i>Back End</i> "</h5>
-                <h5 style="margin-top: 10px;">G64190105</h5>
-                <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
-            </div>
+            {% endfor %}
         </div>
-    </content>
-    <footer>
-        <div class="about">
-            <div class="bag-1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
-                <h3>About Us</h3>
-                <p style="margin-top: 5px;">How To Book</p>
-                <p>Contact Us</p>
-                <p>About Us</p>
-                <br>
-                <br>
-                <h3>Follow Us</h3>
-                <p style="margin-top: 5px;">Twitter</p>
-                <p>Facebook</p>
-                <p>Instagram</p>
-            </div>
-            <div class="bag-2"  data-aos="fade-down" data-aos-duration="1500" data-aos-delay="1000">
-                <h3>Others</h3>
-                <p style="margin-top: 5px;">Privacy Policy</p>
-                <p>Terms and Conditions</p>
-            </div>
-            <div class="bag-3" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
-                <img src="{{url_for('static', filename="images/logo.jpeg")}}">
-                <p style="margin-top: 25px;"><i class="fas fa-phone"></i>+62(000000-0000000)</p>
-                <p><i class="fas fa-envelope"></i>RoomBook.ipb@gmail.com</p>
-            </div>
+    </div>
+    <div class="container-abt" style="padding-top:300px;">
+        <h2 data-aos="fade-up" data-aos-duration="1500">About Us</h2>
+        <div class="profile" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
+            <img src="{{url_for('static', filename="images/logo.jpeg")}}">
+            <h4>Maxdha</h4>
+            <h5 style="margin-top: 10px;">" <i>Project Manager</i> "</h5>
+            <h5 style="margin-top: 10px;">G64190105</h5>
+            <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
         </div>
-        <div class="copyright">
-            <h5>Copyright 2021 All Rights Reserved RoomBook.</h5>
+        <div class="profile" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="750">
+            <img src="{{url_for('static', filename="images/logo.jpeg")}}">
+            <h4>Jevon</h4>
+            <h5 style="margin-top: 10px;">" <i>UI / UX</i> "</h5>
+            <h5 style="margin-top: 10px;">G64190105</h5>
+            <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
         </div>
-    </footer>
-    
+        <div class="profile" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="1000">
+            <img src="{{url_for('static', filename="images/logo.jpeg")}}">
+            <h4>Ammar</h4>
+            <h5 style="margin-top: 10px;">" <i>Front End</i> "</h5>
+            <h5 style="margin-top: 10px;">G64190105</h5>
+            <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
+        </div>
+        <div class="profile" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="1250">
+            <img src="{{url_for('static', filename="images/logo.jpeg")}}">
+            <h4>Daffa</h4>
+            <h5 style="margin-top: 10px;">" <i>Back End</i> "</h5>
+            <h5 style="margin-top: 10px;">G64190105</h5>
+            <p style="margin-top: 10px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Doloribus eos laudantium molestiae perspiciatis eum suscipit omnis, dicta incidunt vel ut aspernatur.</p>
+        </div>
+    </div>
+</content>
+<footer>
+    <div class="about">
+        <div class="bag-1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
+            <h3>About Us</h3>
+            <p style="margin-top: 5px;">How To Book</p>
+            <p>Contact Us</p>
+            <p>About Us</p>
+            <br>
+            <br>
+            <h3>Follow Us</h3>
+            <p style="margin-top: 5px;">Twitter</p>
+            <p>Facebook</p>
+            <p>Instagram</p>
+        </div>
+        <div class="bag-2"  data-aos="fade-down" data-aos-duration="1500" data-aos-delay="1000">
+            <h3>Others</h3>
+            <p style="margin-top: 5px;">Privacy Policy</p>
+            <p>Terms and Conditions</p>
+        </div>
+        <div class="bag-3" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
+            <img src="{{url_for('static', filename="images/logo.jpeg")}}">
+            <p style="margin-top: 25px;"><i class="fas fa-phone"></i>+62(000000-0000000)</p>
+            <p><i class="fas fa-envelope"></i>RoomBook.ipb@gmail.com</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <h5>Copyright 2021 All Rights Reserved RoomBook.</h5>
+    </div>
+</footer>
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-    -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-          once: true,
-      });
-    </script>
-    <script src="{{url_for('static',filename='scripts/autocomplete.js')}}"></script>
-    <script>
-    const room_choice = JSON.parse('{{room_choice | tojson}}');
-    autocomplete(document.getElementById("autocomplete"), room_choice);
-    </script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+-->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+    once: true,
+});
+</script>
+<script src="{{url_for('static',filename='scripts/autocomplete.js')}}"></script>
+<script>
+const room_choice = JSON.parse('{{room_choice | tojson}}');
+autocomplete(document.getElementById("autocomplete"), room_choice);
+</script>
 </body>
 </html>

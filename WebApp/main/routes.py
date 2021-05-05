@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from WebApp.model import Post, Room
 from WebApp.rooms.forms import SearchForm
-from WebApp import search
+import flask_whooshalchemy
 import json
 
 main = Blueprint('main', __name__)
@@ -37,8 +37,8 @@ def home():
         except:
             pass
         flash(f"Searching for {keyword}", category='info')
-        rooms, total = Room.search(keyword, 1, 100)
-        rooms = rooms.all()
+        rooms = Room.query.filter(Room.name.like(keyword) | Room.location.like(
+            keyword) | Room.room_type.like(keyword))
         return render_template("homepage.html", current_user=current_user, rooms=rooms, search=keyword, room_choice=room_choice, form=form)
     else:
         return render_template("homepage.html", current_user=current_user, room_choice=room_choice, form=form)

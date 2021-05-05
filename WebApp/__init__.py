@@ -5,12 +5,10 @@ from datetime import timedelta
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from WebApp.config import Config
-from elasticsearch import Elasticsearch
 import os
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-es = Elasticsearch('http://localhost:9200')
 loginManager = LoginManager()
 loginManager.login_view = 'users.login'
 loginManager.login_message_category = 'info'
@@ -28,17 +26,16 @@ def create_app(config_class=Config):
     loginManager.init_app(app)
     mail.init_app(app)
 
-    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']], http_auth=(app.config['ELASTIC_USERNAME'], app.config['ELASTIC_PASSWORD'])) \
-        if app.config['ELASTICSEARCH_URL'] else None
-
     from WebApp.users.routes import users
     from WebApp.posts.routes import posts
     from WebApp.main.routes import main
+    from WebApp.rooms.routes import rooms
     from WebApp.errors.handlers import errors
 
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(rooms)
     app.register_blueprint(errors)
 
     return app

@@ -1,66 +1,15 @@
 from datetime import datetime
-from WebApp import db, loginManager, search
+from WebApp import db, loginManager
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
-from WebApp.search import add_to_index, remove_from_index, query_index
+from whoosh.analysis import StemmingAnalyzer
+import flask_whooshalchemy
 
 
 @loginManager.user_loader
 def loadUser(user_id):
     return User.query.get(int(user_id))
-
-
-room_book = db.Table('room_book',
-                     db.Column('user_id', db.Integer, db.ForeignKey(
-                         'user.id'), primary_key=True),
-                     db.Column('room_id', db.Integer, db.ForeignKey(
-                         'room.id'), primary_key=True),
-                     db.Column('tanggal', db.DateTime)
-                     )
-
-
-class SearchableMixin(object):
-    @classmethod
-    def search(cls, expression, page, per_page):
-        ids, total = query_index(cls.__tablename__, expression, page, per_page)
-        if total == 0:
-            return cls.query.filter_by(id=0), 0
-        when = []
-        for i in range(len(ids)):
-            when.append((ids[i], i))
-        return cls.query.filter(cls.id.in_(ids)).order_by(
-            db.case(when, value=cls.id)), total
-
-    @classmethod
-    def before_commit(cls, session):
-        session._changes = {
-            'add': list(session.new),
-            'update': list(session.dirty),
-            'delete': list(session.deleted)
-        }
-
-    @classmethod
-    def after_commit(cls, session):
-        for obj in session._changes['add']:
-            if isinstance(obj, SearchableMixin):
-                add_to_index(obj.__tablename__, obj)
-        for obj in session._changes['update']:
-            if isinstance(obj, SearchableMixin):
-                add_to_index(obj.__tablename__, obj)
-        for obj in session._changes['delete']:
-            if isinstance(obj, SearchableMixin):
-                remove_from_index(obj.__tablename__, obj)
-        session._changes = None
-
-    @classmethod
-    def reindex(cls):
-        for obj in cls.query:
-            add_to_index(cls.__tablename__, obj)
-
-
-db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
-db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
 
 
 class User(db.Model, UserMixin):
@@ -72,14 +21,12 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False,
                            default="default.png")
     password = db.Column(db.String(60), nullable=False)
-    rooms = db.relationship("Room", secondary=room_book, lazy="subquery",
-                            backref=db.backref("rooms", lazy=True))
     mahasiswa = db.relationship(
-        "Mahasiswa", backref="mhs", lazy=True)
+        "Mahasiswa", backref="usr", lazy=True)
     dosen = db.relationship(
-        "Dosen", backref="dsn", lazy=True)
+        "Dosen", backref="usr", lazy=True)
     staff = db.relationship(
-        "Staff", backref="stf", lazy=True)
+        "Staff", backref="usr", lazy=True)
 
     def get_reset_token(self, expire_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expire_sec)
@@ -133,14 +80,16 @@ class Post(db.Model):
         return f"Post('{self.title}', '{self.datePosted}')"
 
 
-class Room(SearchableMixin, db.Model):
+class Room(db.Model):
     __tablename__ = 'room'
     __searchable__ = ['name', 'location', 'room_type']
+    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
     room_type = db.Column(db.String(50), nullable=False)
+    capacity = db.Column(db.Integer, default=100, nullable=False)
     information = db.Column(db.Text, nullable=False)
     person_in_charge = db.relationship(
         "Person_In_Charge", backref="room", lazy=True)
@@ -159,3 +108,15 @@ class Person_In_Charge(db.Model):
 
     def __repr__(self):
         return f"User('{self.name}', '{self.number}')"
+
+
+class Booked(db.Model):
+    __tablename__ = 'booked'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
+    date = db.Column(db.Date)
+    event = db.Column(db.String(50))
+    organization = db.Column(db.String(50))
+    booked_by = db.relationship("User", backref="book_info", lazy="select")
+    room_booked = db.relationship("Room", backref="book_info", lazy="select")

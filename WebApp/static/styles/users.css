@@ -1,0 +1,342 @@
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #3D3D3D;
+    border-bottom: 1px solid #BB86FC;
+  }
+  .autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+    color: white;
+  }
+  .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+  }
+  
+  body {
+    color: white;
+  }
+  
+  header {
+    width: 100%;
+    height: auto;
+    background-color: #121212;
+    margin-top: -15px;
+    padding-top: 5px;
+  }
+  
+  .container {
+    margin: 5px;
+  }
+  
+  .custom-nav .navbar-brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .custom-nav .navbar-brand span {
+    color: white;
+    font-size: 35px;
+    margin-left: 20px;
+  }
+  
+  .custom-nav .navbar-nav {
+    padding-top: 5px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  .custom-nav .navbar-nav .nav-link {
+    color: black;
+    font-size: 25px;
+  }
+  
+  .custom-nav .navbar-nav .nav-profile ul li a:hover {
+    background-color: black;
+  }
+  
+  .carousel {
+    width: auto;
+    height: 50%;
+    margin-top: -10px;
+  }
+  
+  .carousel img {
+    width: 100%;
+    height: 500px;
+  }
+  
+  content .container-abt {
+    background-color: #212121;
+    padding-bottom: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  
+  content .container-abt h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  content .container-abt .profile {
+    width: 20%;
+    background-color: #3D3D3D;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 10px;
+  }
+  
+  content .container-abt .profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  
+  content .container-abt .profile h4 {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  content .container-abt .profile h5 {
+    text-align: center;
+    margin-top: -5px;
+  }
+  
+  content .container{
+    padding-top: 20px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    padding-bottom: 30px;
+  }
+  
+  content .current-user{
+    background-color: #3D3D3D;
+    color: white;
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+    text-align: left;
+    padding: 30px;
+    margin: auto;
+    margin-left: 350px;
+    margin-right: 20px;
+    margin-top: 0px;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    -webkit-box-flex: 0.5;
+        -ms-flex: 0.5;
+            flex: 0.5;
+    }
+    content .current-user .account-img {
+        height: 250px;
+        width: 250px;
+        margin-right: 20px;
+        margin-bottom: 16px;
+      }
+      
+    content .current-user .account-heading {
+        font-size: 2.5rem;
+    }
+
+    content .current-user .body{
+        background-color: #3D3D3D;
+        color: white;
+    }
+
+  content .search {
+    background-color: #3D3D3D;
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+    text-align: left;
+    margin: auto;
+    margin-left: 350px;
+    margin-right: 20px;
+    margin-top: 0px;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    -webkit-box-flex: 0.5;
+        -ms-flex: 0.5;
+            flex: 0.5;
+  }
+  
+  content .search h3 {
+    margin-top: 15px;
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  content .search h6 {
+    margin-left: 15px;
+    color: white;
+  }
+  
+  content .search form {
+    width: 95%;
+    margin-left: 5px;
+    color: white;
+  }
+  
+  content .keterangan {
+    margin: auto;
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+  }
+  
+  content .keterangan .lokasi {
+    background-color: #3D3D3D;
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  content .keterangan .lokasi .detail{
+    height: 100%;
+    width: 100%;
+    box-sizing: inherit;
+  }
+  
+  content .keterangan .lokasi img {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+  }
+  content .keterangan .lokasi p {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+  content .keterangan .lokasi a {
+    color: #03DAC6;
+    text-decoration: none;
+  }
+  content .keterangan .lokasi h4 {
+    margin-left: 10px;
+    font-size: 24px;
+  }
+  content .keterangan .lokasi h5 {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  content .keterangan .lokasi button {
+    background-color: #03DAC6;
+    margin: auto;
+    margin-top: -5%;
+    margin-left: 80%;
+    padding: 0px 9px;
+  }
+  
+  content .keterangan .filter button {
+    background-color: #3D3D3D;
+    width: 12%;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  footer .about {
+    background-color: #121212;
+    padding-bottom: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  footer .about .bag-1 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+    margin-left: 250px;
+  }
+  
+  footer .about .bag-1 h3 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  footer .about .bag-1 p {
+    font-size: 15px;
+    margin-top: -15px;
+    text-align: left;
+  }
+  
+  footer .about .bag-2 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-top: 25px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    text-align: left;
+  }
+  
+  footer .about .bag-2 h3 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  footer .about .bag-2 p {
+    font-size: 15px;
+    margin-top: -15px;
+    text-align: left;
+  }
+  
+  footer .about .bag-3 {
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+    margin-top: 25px;
+    font-size: 15px;
+    color: white;
+  }
+  
+  footer .about .bag-3 img {
+    margin: auto;
+    border-radius: 50%;
+    margin-left: 60px;
+  }
+  
+  footer .about .bag-3 p {
+    margin-left: 30px;
+  }
+  
+  footer .about .bag-3 i {
+    margin-right: 5px;
+    color: white;
+  }
+  
+  footer .copyright {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  /*# sourceMappingURL=homepage.css.map */
