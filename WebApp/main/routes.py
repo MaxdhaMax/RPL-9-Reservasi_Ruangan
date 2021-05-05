@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from WebApp.model import Post, Room
 from WebApp.rooms.forms import SearchForm
-import flask_whooshalchemy
 import json
 
 main = Blueprint('main', __name__)
