@@ -93,7 +93,19 @@
     transition: background-color 0.2s;
   }
   
-  .days div:hover:not(.today) {
+  .days div.booked:hover {
+    background-color: #960000;
+    border: 0.2rem solid rgb(0, 0, 0);
+    cursor: pointer;
+  }
+
+  .days div.selected:hover {
+    background-color: rgb(0, 131, 131);
+    border: 0.2rem solid rgb(0, 0, 0);
+    cursor: pointer;
+  }
+
+  .days div:hover:not(.today,.booked,.selected) {
     background-color: #262626;
     border: 0.2rem solid #777;
     cursor: pointer;
@@ -106,4 +118,12 @@
   
   .today {
     background-color: #167e56;
+  }
+
+  .booked {
+    background-color: red;
+  }
+
+  .selected {
+    background-color: cyan;
   }

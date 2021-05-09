@@ -4,11 +4,13 @@ from flask_login import LoginManager
 from datetime import timedelta
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from flask_marshmallow import Marshmallow
 from WebApp.config import Config
 import os
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+ma = Marshmallow()
 loginManager = LoginManager()
 loginManager.login_view = 'users.login'
 loginManager.login_message_category = 'info'
@@ -25,6 +27,7 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     loginManager.init_app(app)
     mail.init_app(app)
+    ma.init_app(app)
 
     from WebApp.users.routes import users
     from WebApp.posts.routes import posts

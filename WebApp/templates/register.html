@@ -13,28 +13,29 @@
     <title>RoomBook_Register</title>
   </head>
   <body>
-    <div class="container-utama" data-aos="zoom-in" data-aos-duration="1000">
-            <i class="fas fa-user-circle logo" data-aos="flip-left" data-aos-delay="1000"  data-aos-duration="1000" ></i>
-            <div class="row">
-              <div style="padding: 5px;" id="message">
-                  <div id="inner-message" class="alert alert-error">
-                      {% with messages = get_flashed_messages(with_categories=true) %}
-                      {% if messages %}
-                        {% for category, message in messages %}
-                          <div class="alert alert-{{ category }} d-flex justify-content-center">
-                            {{ message }}
-                          </div>
-                        {% endfor %}
-                      {% endif %}
-                    {% endwith %}
-                  </div>
-              </div>
+    <div class="container-body">
+      <div class="row">
+        <div style="padding: 5px;" id="message">
+            <div id="inner-message" class="alert alert-error">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} d-flex justify-content-center">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
             </div>
+        </div>
+      </div>
+      <div class="container-utama" data-aos="zoom-in" data-aos-duration="1000">
+            <i class="fas fa-user-circle logo" data-aos="flip-left" data-aos-delay="1000"  data-aos-duration="1000" ></i>
             <div class="container-form">
                 <form method="POST" action="">
                     {{  form.hidden_tag()   }}
                     <div class="mb-3" data-aos="fade-up" data-aos-delay="1000">
-                    {{form.username.label(class = "form-control-label" ,style = "color:white;")}}
+                    {{form.username.label(class = "form-control-plaintext" ,style = "color:white;")}}
                     {% if form.username.errors %}
                         {{form.username(class = "form-control is-invalid")}}
                         <div class = "invalid-feedback">
@@ -47,7 +48,7 @@
                     {% endif %}  
                     </div>
                     <div class="mb-3" data-aos="fade-up" data-aos-delay="1500">
-                        {{ form.email.label(class="form-control-label" ,style = "color:white;") }}
+                        {{ form.email.label(class="form-control-plaintext" ,style = "color:white;") }}
                         {% if form.email.errors %}
                             {{ form.email(class="form-control  is-invalid") }}
                             <div class="invalid-feedback">
@@ -60,7 +61,7 @@
                         {% endif %}
                     </div>
                     <div class="mb-3" data-aos="fade-up" data-aos-delay="2000">
-                        {{form.password.label(class = "form-control-label" ,style = "color:white;")}}
+                        {{form.password.label(class = "form-control-plaintext" ,style = "color:white;")}}
                         {% if form.password.errors %}
                             {{form.password(class = "form-control  is-invalid")}}
                             <div class = "invalid-feedback">
@@ -73,7 +74,7 @@
                         {% endif %} 
                     </div>
                     <div class="mb-3" data-aos="fade-up" data-aos-delay="2500">
-                        {{form.passwordConfirmation.label(class = "form-control-label" ,style = "color:white;")}}
+                        {{form.passwordConfirmation.label(class = "form-control-plaintext" ,style = "color:white;")}}
                         {% if form.passwordConfirmation.errors %}
                             {{form.passwordConfirmation(class = "form-control  is-invalid")}}
                             <div class = "invalid-feedback">
@@ -86,14 +87,13 @@
                         {% endif %} 
                     </div>
                     <div class="mb-3" data-aos="fade-up" data-aos-delay="3000"></div>
-                      {{form.submit(class = "btn btn-sm" ,style="color:black;background-color:#BB86FC; margin-left: 270px; margin-top: 15px;")}}
+                      {{form.submit(class = "btn btn-sm" ,style="background-color:#BB86FC; margin-left: 65%; margin-top: 15px;")}}
                     </div>
                 </form>
             </div>
-    </div>
-
-    <h6 data-aos="fade-up" data-aos-duration="1000">Already have an account? <a href="{{url_for('users.login')}}" style="text-decoration: none;
-      "><i style="color: #BB86FC;">Log in</i></a></h6>
+            <h6 data-aos="fade-up" data-aos-duration="1000">Already have an account? <a href="{{url_for('users.login')}}" style="text-decoration: none;"><i style="color: #BB86FC;">Log in</i></a></h6>
+      </div>
+    
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

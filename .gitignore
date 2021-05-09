@@ -130,4 +130,4 @@ dmypy.json
 
 # Other
 *.vscode
-mock_data
+temp.py

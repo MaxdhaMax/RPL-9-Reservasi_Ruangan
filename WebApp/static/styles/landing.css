@@ -1,6 +1,19 @@
+html {
+  height: 100%;
+}
+
 body {
   background-color: #212121;
   color: white;
+  height: 100%;
+}
+
+body .container-utama {
+  background-image: url("../images/bigben.png");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: bottom;
+  height: 100%;
 }
 
 body .container-utama header {
@@ -19,10 +32,6 @@ body .container-utama header img {
 }
 
 body .container-utama main {
-  background-image: url("image/bigben.png");
-  background-repeat: no-repeat;
-  background-size: 1264px 490px;
-  background-position: bottom right;
   height: 500px;
   padding-top: 35px;
 }
