@@ -1,0 +1,466 @@
+body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    background-color: #242424;
+  }
+  
+  header {
+    width: 100%;
+    height: auto;
+    background-color: #121212;
+    padding-top: 5px;
+  }
+  
+  .container {
+    margin: 5px;
+  }
+  
+  .custom-nav .navbar-brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .custom-nav .navbar-brand span {
+    color: white;
+    font-size: 35px;
+    margin-left: 20px;
+  }
+  
+  .custom-nav .navbar-nav {
+    padding-top: 5px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  .custom-nav .navbar-nav .nav-link {
+    color: black;
+    font-size: 25px;
+  }
+  
+  .container-isi {
+    width: 90%;
+    height: 50%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #3D3D3D;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: white;
+    opacity: 1;
+  }
+  
+  .container-isi .profile {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-left: 20px;
+    border-right: 1px solid white;
+  }
+  
+  .container-isi .profile img {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border-radius: 50%;
+    margin-top: 40px;
+  }
+  
+  .container-isi .profile span {
+    margin: auto;
+    margin-left: 5%;
+    margin-top: 25px;
+    font-size: 20px;
+  }
+  
+  .container-isi .profile P {
+    font-size: 15px;
+    margin: auto;
+    margin-left: 5%;
+  }
+  
+  .container-isi .profile a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  .container-isi .profile a:hover {
+    color: #BB86FC;
+    background-color: #262626;
+    border: 0.2rem solid #262626;
+  }
+  
+  .container-isi .isi-utama {
+    -webkit-box-flex: 4;
+        -ms-flex: 4;
+            flex: 4;
+    padding-bottom: 10px;
+  }
+  
+  .container-isi .isi-utama .bagian-atas {
+    width: 90%;
+    margin-left: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid white;
+  }
+  
+  .container-isi .isi-utama .bagian-atas i {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-right: 5%;
+  }
+  
+  .container-isi .isi-utama .bagian-atas h4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .container-isi .isi-utama .bagian-tengah {
+    width: 90%;
+    margin-left: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    border-bottom: 1px solid white;
+  }
+  
+  .container-isi .isi-utama .bagian-tengah i {
+    padding-bottom: 15px;
+  }
+  
+  .container-isi .isi-utama .bagian-tengah h6 {
+    margin-left: 10px;
+    padding-bottom: 15px;
+  }
+  
+  .container-isi .isi-utama .bagian-tengah h4 {
+    width: 100%;
+    padding-top: 20px;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .gambar-utama {
+    -webkit-box-flex: 1.5;
+        -ms-flex: 1.5;
+            flex: 1.5;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .gambar-utama img {
+    width: 400px;
+    height: 250px;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 5px;
+    border-radius: 15px;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .gambar-pinggir {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .gambar-pinggir img {
+    width: 120px;
+    height: 80px;
+    margin-top: 5px;
+    border-radius: 10px;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 10px;
+    margin-left: 30px;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .operator {
+    width: 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .operator h5 {
+    width: 100%;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .operator i {
+    width: 10%;
+    padding-top: 3px;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .operator h6 {
+    width: 50%;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .harga {
+    width: 25%;
+    margin-left: 35%;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .harga h6 {
+    font-size: 15px;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .penjelasan .harga h3 {
+    margin-left: -15%;
+  }
+  
+  .container-isi .bag-calender {
+    -webkit-box-flex: 2.5;
+        -ms-flex: 2.5;
+            flex: 2.5;
+    background-color: #2A2E41;
+    background-size: cover;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .container-isi .bag-calender .container {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-bottom: 20px;
+    color: #eee;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  
+  .container-isi .bag-calender .container .bagian-caption {
+    margin-top: 10px;
+    width: 80%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .container-isi .bag-calender .container .bagian-caption h3 {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+  }
+  
+  .container-isi .bag-calender .container .bagian-caption span {
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    margin: auto;
+    margin-left: 30%;
+  }
+  
+  .container-isi .bag-calender .container .calendar {
+    width: 20rem;
+    height: 23rem;
+    background-color: #2A2E41;
+  }
+  
+  .container-isi .bag-calender .container .calendar .month {
+    width: 100%;
+    height: 7rem;
+    background-color: #2A2E41;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 2rem;
+    text-align: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  }
+  
+  .container-isi .bag-calender .container .calendar .month i {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .container-isi .bag-calender .container .calendar .month h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container-isi .bag-calender .container .calendar .month p {
+    font-size: 1rem;
+  }
+  
+  .container-isi .bag-calender .container .calendar .weekdays {
+    margin-top: 10px;
+    width: 50%;
+    height: 1rem;
+    padding: 0 0.4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .container-isi .bag-calender .container .calendar .weekdays div {
+    font-size: 0.7rem;
+    width: calc(44.2rem / 7);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  }
+  
+  .container-isi .bag-calender .container .calendar .days {
+    margin-top: 25px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 0.2rem;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .container-isi .bag-calender .container .calendar .days div {
+    font-size: 1rem;
+    margin-left: 10px;
+    margin: 0.5rem;
+    width: 1.8rem;
+    height: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+  }
+  
+  .container-isi .bag-calender .container .calendar .days div:hover:not(.today) {
+    background-color: #262626;
+    border: 0.3rem solid #777;
+    cursor: pointer;
+  }
+  
+  .container-isi .bag-calender .container .status-ruangan {
+    padding-top: 25px;
+    padding-bottom: 40px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: right;
+        -ms-flex-pack: right;
+            justify-content: right;
+  }
+  
+  .container-isi .bag-calender .container .status-ruangan h6 {
+    margin: auto;
+    margin-left: -3px;
+  }
+  
+  .container-isi .bag-calender .container .status-ruangan i {
+    margin: auto;
+    margin-left: 58%;
+    color: #d13f3f;
+  }
+  
+  .container-isi .bag-calender .container .bagian-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 35px;
+  }
+  
+  .container-isi .bag-calender .container .bagian-button .pesan {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    background-color: #BB86FC;
+    color: white;
+    margin-left: 15%;
+    border: 0;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 5px;
+  }
+  
+  .container-isi .bag-calender .container .bagian-button .cancel {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    color: red;
+    background-color: transparent;
+    border: 0;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  
+  .prev-date, .next-date {
+    opacity: 0.5;
+  }
+  
+  .today {
+    background-color: #167e56;
+  }
+  
+  footer {
+    width: 100%;
+  }
+  
+  footer .copyright {
+    background-color: #121212;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  /*# sourceMappingURL=pesan.css.map */
