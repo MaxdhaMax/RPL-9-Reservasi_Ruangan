@@ -87,22 +87,22 @@ def create_mockData(app):
             db.session.add(user)
             db.session.commit()
 
-        for i in range(len(RoomList)):
+        for i, roomdat in enumerate(RoomList):
             print(f"[+] Creating Room {i}")
-            name = RoomList[i][0]
-            location = RoomList[i][1]
-            room_type = RoomList[i][2]
-            information = RoomList[i][3]
+            name = roomdat["name"]
+            location = roomdat["location"]
+            room_type = roomdat["room_type"]
+            information = roomdat["information"]
             room = Room(name=name, location=location,
                         room_type=room_type, information=information, capacity=random.randint(100, 150))
             db.session.add(room)
             db.session.commit()
 
-        for i in range(len(RoomList)):
+        for i in range(1, len(RoomList) + 1):
             print(f"[+] Booking room {i}")
             for event in EventList:
                 user = User.query.filter_by(id=random.randint(1, 149)).first()
-                room = Room.query.filter_by(id=i + 1).first()
+                room = Room.query.filter_by(id=i).first()
                 daterand = datetime.strptime(random_date(
                     "2021/1/1", "2021/12/31", random.random()),
                     "%Y/%m/%d").date()

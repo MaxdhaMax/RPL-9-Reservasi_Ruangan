@@ -161,8 +161,8 @@
             <div class="lokasi">
                 <img src="{{url_for('static', filename="images/" + room.image_file)}}" alt="">
                 <div class="detail">
-                    <h4><a href="">{{room.name}}</a></h4>
-                    <h5>{{room.location}} - {{room.room_type}} ({{room.capacity}})</h5>
+                    <h4 data-bs-toggle="tooltip" data-bs-placement="top" title="Informasi lebih lanjut tentang {{room.name}}"><a href="">{{room.name}}</a></h4>
+                    <h5 data-bs-toggle="tooltip" data-bs-placement="top" title="Lokasi-Tipe Ruangan (Kapasitas)">{{room.location}} - {{room.room_type}} ({{room.capacity}})</h5>
                     {% if room.information|length > 150 %}
                         <p>{{room.information[0:150] + " ...."}}</p>
                     {% else %}

@@ -22,7 +22,7 @@ function createModal(date) {
   const datestr = date.replaceAll("/","-");
   const modal  = `<div class="modal fade" id="${'modal-' + datestr}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content bg-dark text-white">
       <div class="modal-header">
         <h1 class="modal-title" id="exampleModalLabel">Booked</h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -30,10 +30,28 @@ function createModal(date) {
         </button>
       </div>
       <div class="modal-body">
-        <h3 class="date"></h3>
-        <h3 class="event"></h3>
-        <h3 class="organization"></h3>
-        <h3 class="booked_by"></h3>
+        <table class="table table-dark">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><h3>Date</h3></th>
+            <td><h3 class="date"></h3></td>
+          </tr>
+          <tr>
+            <th scope="row"><h3>Held By</h3></th>
+            <td><h3 class="event"></h3></td>
+          </tr>
+          <tr>
+            <th scope="row"><h3>Event Held By</h3></th>
+            <td colspan="2"><h3 class="organization"></h3></td>
+          </tr>
+          <tr>
+            <th scope="row"><h3>Booked By</h3></th>
+            <td colspan="2"><h3 class="booked_by"></h3></td>
+          </tr>
+        </tbody>
+      </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -135,10 +153,10 @@ function renderCalendar() {
       const editBookedBy = document.querySelector(`#modal-${cleanDate} .modal-body .booked_by`)
       const bookData = await getBookData(cleanDate);
       console.log(bookData)
-      editDate.innerHTML = `Date      : ${bookData.date}`
-      editEvent.innerHTML = `Event Name   : ${bookData.event}`
-      editOrganization.innerHTML = `Event Held By  : ${bookData.organization}`
-      editBookedBy.innerHTML = `Booked By     : ${bookData['booked_by.username']}`
+      editDate.innerHTML = `${bookData.date}`
+      editEvent.innerHTML = `${bookData.event}`
+      editOrganization.innerHTML = `${bookData.organization}`
+      editBookedBy.innerHTML = `${bookData['booked_by.username']}`
     });
   })
 };
