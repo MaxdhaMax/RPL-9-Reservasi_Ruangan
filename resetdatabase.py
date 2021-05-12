@@ -1,6 +1,6 @@
 from WebApp import db, create_app, bcrypt
 from WebApp.model import Room, User, Person_In_Charge, Booked
-from mock_data import RoomList, EventList, UserList
+from mock_data import RoomList, EventList, UserList, PersonInCharge
 from mock_data.utils import random_date
 from datetime import datetime
 import random
@@ -87,14 +87,22 @@ def create_mockData(app):
             db.session.add(user)
             db.session.commit()
 
-        for i, roomdat in enumerate(RoomList):
+        for i, (roomdat, pic) in enumerate(zip(RoomList, PersonInCharge)):
             print(f"[+] Creating Room {i}")
             name = roomdat["name"]
             location = roomdat["location"]
             room_type = roomdat["room_type"]
             information = roomdat["information"]
+            pic_name = pic["name"]
+            pic_number = pic["number"]
+            list_person_in_charge = []
+            person_in_charge = Person_In_Charge(
+                name=pic_name, number=pic_number)
+            list_person_in_charge.append(person_in_charge)
             room = Room(name=name, location=location,
-                        room_type=room_type, information=information, capacity=random.randint(100, 150))
+                        room_type=room_type, information=information,
+                        capacity=random.randint(100, 150), price=random.randint(100000, 300000),
+                        person_in_charge=list_person_in_charge)
             db.session.add(room)
             db.session.commit()
 
@@ -109,7 +117,8 @@ def create_mockData(app):
                 booked = Booked(
                     booked_by=user, room_booked=room,
                     date=daterand, event=event["event"],
-                    organization=event["organization"])
+                    organization=event["organization"],
+                    name=event["name"])
                 db.session.add(booked)
                 db.session.commit()
 

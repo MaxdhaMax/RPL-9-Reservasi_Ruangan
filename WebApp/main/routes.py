@@ -20,7 +20,7 @@ def home():
     # page = request.args.get('page', 1, type=int)
     # posts = Post.query.order_by(
     #     Post.datePosted.desc()).paginate(page=page, per_page=5)
-    form = SearchForm()
+    form = SearchForm(request.args)
     all_room = Room.query.order_by(Room.name).all()
     room_choice = list()
     for room in all_room:
@@ -28,8 +28,8 @@ def home():
         room_choice.append(room.location)
         room_choice.append(room.room_type)
     room_choice = list(dict.fromkeys(room_choice))
-    if (form.validate_on_submit()):
-        keyword = form.ruangan.data
+    keyword = form.ruangan.data
+    if (keyword):
         try:
             check_in = form.check_in.data.strftime('%Y-%m-%d')
             check_out = form.check_out.data.strftime('%Y-%m-%d')

@@ -89,9 +89,10 @@ class Room(db.Model):
     capacity = db.Column(db.Integer, default=100, nullable=False)
     information = db.Column(db.Text, nullable=False)
     person_in_charge = db.relationship(
-        "Person_In_Charge", backref="room", lazy=True)
+        "Person_In_Charge", backref="room", lazy="select")
     image_file = db.Column(db.String(20), nullable=False,
                            default="default.png")
+    price = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f"Room('{self.name}', '{self.location}', '{self.room_type}')"
@@ -115,5 +116,6 @@ class Booked(db.Model):
     date = db.Column(db.Date)
     event = db.Column(db.String(50))
     organization = db.Column(db.String(50))
+    name = db.Column(db.String(50))
     booked_by = db.relationship("User", backref="book_info", lazy="select")
     room_booked = db.relationship("Room", backref="book_info", lazy="select")

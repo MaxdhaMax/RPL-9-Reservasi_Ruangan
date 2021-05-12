@@ -19,40 +19,48 @@
     <div class="container my-4">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light custom-nav">
-            <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <a class="navbar-brand" href="#">
-                        <img style="margin-top: -15px;" src="{{url_for('static', filename="images/logo.jpeg")}}">
-                        <span>ROOMBOOK</span>
-                    </a>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" style="color: #BB86FC;" href="{{url_for('main.home')}}">Home</a>
-                        <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Ruangan</a>
-                        <div class="nav-profile">
-                            <li class="nav-item dropdown" style="color: white; display: flex;">
-                                <img src="{{url_for('static', filename="images/" + current_user.image_file)}}" style="flex: 3;  margin-left: 25px;
-                                width: 60px; height: 60px; border-radius: 50%;" alt="">
-                                <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{current_user.username}}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #3D3D3D;">
-                                        <li><a class="dropdown-item" href="{{url_for('users.account')}}" style="color: white;">Profile</a></li>
-                                        <li><a class="dropdown-item" href="#" style="color: white; border-bottom: 1px solid white;">History</a></li>
-                                        <li><a class="dropdown-item" href="{{url_for('users.logout')}}" style="color: #BB86FC;">Log Out</a></li>
-                                </ul>
-                            </li>
-                        </div>
-                        
-                    </div>
-                </div>
+          <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <a class="navbar-brand" href="{{url_for('main.home')}}">
+                <img style="margin-top: -15px;" src="{{url_for('static', filename="images/logo.jpeg")}}">
+                <span>ROOMBOOK</span>
+              </a>
             </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;"
+              id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link" style="color: #BB86FC;" href="{{url_for('main.home')}}">Home</a>
+                <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Ruangan</a>
+                <div class="nav-profile">
+                  <li class="nav-item dropdown" style="color: white; display: flex;">
+                    <img src="{{url_for('static', filename="images/" + current_user.image_file)}}" style="flex: 3;  margin-left: 25px;
+                                width: 60px; height: 60px; border-radius: 50%;" alt="">
+                    <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown"
+                      role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{current_user.username}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                      style="background-color: #3D3D3D;">
+                      <li><a class="dropdown-item" href="{{url_for('users.account')}}" style="color: white;">Profile</a>
+                      </li>
+                      <li><a class="dropdown-item" href="#"
+                          style="color: white; border-bottom: 1px solid white;">History</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('users.logout')}}" style="color: #BB86FC;">Log
+                          Out</a></li>
+                    </ul>
+                  </li>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </nav>
-    </div> <br> <br>
+      </div> <br> <br>
+
     <!-- Carousel -->
     <div class="row">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -103,7 +111,7 @@
         <!-- Bagian Search -->
         <div class="search" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="250">
             <h3>Cari Ruangan</h3>
-            <form method="POST" action="" autocomplete="off">
+            <form method="GET" action="" autocomplete="off">
                 {{  form.hidden_tag()   }}
                 <div class="mb-3">
                 {{ form.ruangan.label(class="form-control-label") }}
@@ -117,6 +125,9 @@
                     {% else %}
                         {{ form.ruangan(class="form-control",id="autocomplete", placeholder="Nama, Lokasi, atau Tipe Ruangan") }}
                     {% endif %}
+                </div>
+                <div class="mb-3">
+                    <h5>Cek Ketersediaan</h5>
                 </div>
                 <div class="mb-3">
                 {{ form.check_in.label(class="form-control-label") }}
@@ -168,7 +179,7 @@
                     {% else %}
                         <p>{{room.information}}</p>
                     {% endif %}
-                    <button class="btn btn-sm" type="submit">Pesan</button>
+                    <a href="{{url_for('rooms.room',id=room.id)}}"><button class="btn btn-sm" type="submit">Pesan</button></a>
                 </div>
             </div>
             {% endfor %}

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/info.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>RoomBook_Info</title>
+  </head>
+
+  <body>
+
+    <!-- NAVBAR -->
+    <header>
+      <div class="container my-4">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light custom-nav">
+          <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <a class="navbar-brand" href="{{url_for('main.home')}}">
+                <img style="margin-top: -15px;" src="{{url_for('static', filename="images/logo.jpeg")}}">
+                <span>ROOMBOOK</span>
+              </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;"
+              id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link" style="color: #BB86FC;" href="{{url_for('main.home')}}">Home</a>
+                <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Ruangan</a>
+                <div class="nav-profile">
+                  <li class="nav-item dropdown" style="color: white; display: flex;">
+                    <img src="{{url_for('static', filename="images/" + current_user.image_file)}}" style="flex: 3;  margin-left: 25px;
+                                width: 60px; height: 60px; border-radius: 50%;" alt="">
+                    <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown"
+                      role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{current_user.username}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                      style="background-color: #3D3D3D;">
+                      <li><a class="dropdown-item" href="{{url_for('users.account')}}" style="color: white;">Profile</a>
+                      </li>
+                      <li><a class="dropdown-item" href="#"
+                          style="color: white; border-bottom: 1px solid white;">History</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('users.logout')}}" style="color: #BB86FC;">Log
+                          Out</a></li>
+                    </ul>
+                  </li>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div> <br> <br>
+
+    </header>
+
+    <body>
+      <div class="container-isi" data-aos="zoom-in" data-aos-duration="1000">
+        <div class="profile">
+          <img src="{{url_for('static',filename="images/" + current_user.image_file)}}" alt="" data-aos="flip-left"
+            data-aos-duration="500" data-aos-delay="1000">
+          <!-- Ganti username nya nanti -->
+          <p class="username" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000">{{current_user.username}}</p>
+          <p style="margin-top: 45px;"><a href="">Info Ruangan</a></p>
+          <p style="margin-top: 25px;"><a href="">Fill in data <br> & Payment</a></p>
+        </div>
+
+        <div class="isi-utama scrollspy-example" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
+          <div class="bagian-tengah mt-3 pb-3">
+            <div class="container">
+              <div class="row" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                <h1 class="mb-3 fw-bold" style="color:#BB86FC;">{{room.name}}</h1>
+              </div>
+              <div class="row mb-2" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1200">
+                <h4><i class="fas fa-map-marker-alt"></i><a href="{{url_for('main.home',ruangan=room.location)}}">{{room.location}}</a></h4>
+              </div>
+              <div class="row mb-2" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1400">
+                <h4><i class="fa fa-home"></i><a href="{{url_for('main.home',ruangan=room.room_type)}}">{{room.room_type}}</a></h4>
+              </div>
+              <div class="row mt-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1600">
+                <div class="col mb-4">
+                  <h4 class="mb-3 fw-bold" style="color:#BB86FC;">Penanggungjawab Ruangan</h4>
+                  <h5><i class="fa fa-user"></i><a>{{pic.name}}</a></h5>
+                  <h5><i class="fas fa-phone"></i><a>{{pic.number}}</a></h5>
+                </div>
+                <div class="col mb-4">
+                  <h4 class="mb-3 fw-bold" style="color:#BB86FC;">Harga/Hari</h4>
+                  <h5>Rp {{room.price}},00</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ket-lokasi" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1800">
+            <div class="gambar-utama">
+              <img src="{{url_for('static',filename="images/logo.jpeg")}}" alt="">
+            </div>
+            <div class="gambar-pinggir">
+              <img src="{{url_for('static',filename="images/logo.jpeg")}}" style="margin-top: 10px;" alt="">
+              <img src="{{url_for('static',filename="images/logo.jpeg")}}" alt="">
+              <img src="{{url_for('static',filename="images/logo.jpeg")}}" alt="">
+            </div>
+          </div>
+          <p>
+          <div class="desc-ruangan" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="2000">
+            <h4 style="color:#BB86FC;" class="fw-bold">Informasi Ruangan</h4>
+            <p>{{room.information}}</p>
+          </div>
+          </p>
+        </div>
+
+        <div class="bag-calender">
+          <div class="check-in">
+            <div class="container">
+              <div class="bagian-caption text-center row">
+                <h3 style="color:#BB86FC;">Pilih Tanggal</h3>
+              </div>
+              <div class="bagian-calender row mb-5">
+                <div class="calendar" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="1000">
+                  <div class="month">
+                    <i class="fas fa-angle-left prev"></i>
+                    <div class="date">
+                      <h2></h2>
+                      <small>Click tanggal kosong untuk memesan</small>
+                    </div>
+                    <i class="fas fa-angle-right next"></i>
+                  </div>
+                  <div class="weekdays">
+                    <div style="margin-left:10px;">Sun</div>
+                    <div style="margin-left:25px;">Mon</div>
+                    <div style="margin-left:25px;">Tue</div>
+                    <div style="margin-left:25px;">Wed</div>
+                    <div style="margin-left:25px;">Thu</div>
+                    <div style="margin-left:25px;">Fri</div>
+                    <div style="margin-left:25px;">Sat</div>
+                  </div>
+                  <div class="days"></div>
+                </div>
+              </div>
+              <div class="status-ruangan row justify-content-center">
+                <div class="col text-center">
+                  <h6><i class="fas fa-circle"></i>Not Available</h6>
+                </div>
+                <div class="col text-center">
+                  <h6><i class="fas fa-circle" style="color:green;"></i>Selected</h6>
+                </div>
+              </div>
+              <div class="ruangan-terpesan row justify-content-start">
+                <h5 class="text-start" style="color:#BB86FC;">Tanggal Terpilih</h5>
+              </div>
+              <div class="ruangan-terpilih row text-start">
+                <ul class="list-group justify-content-start">
+                  <li class="list-group-item bg-dark text-light">Kosong</li>
+                </ul>
+              </div>
+              <div class="row bagian-button">
+                <div class="col d-flex justify-content-center">
+                  <button class="cancel" type="button" class="btn text-center" onclick="clearAllSelectedDate()">
+                  CLEAR ALL
+                  </button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                  <form action="" method="POST" id="selectedDateForm">
+                    <input type="hidden" name="selectedDate" id="submitSelectedDate" value = "TEST">
+                    <button class="pesan" type="button" class="btn text-center" data-bs-toggle="modal" data-bs-target="#areYouSure" onclick="editModal()">
+                      PESAN
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modalgenerator">
+
+      </div>
+            <!-- Modal -->
+      <div class="modal fade" id="areYouSure" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+              <h3 class="modal-title" style="color: #BB86FC;">Apakah Anda Yakin Akan Memesan?</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-dark table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row">Ruangan</th>
+                    <td>{{room.name}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tanggal Pemesanan</th>
+                    <td id="modal-tanggal">
+                      <div>
+                        <ul class="list-group justify-content-start">
+                          
+                        </ul>
+                      </div> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Biaya</th>
+                    <td id="modal-biaya"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" onclick="submitDate()">Pesan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <content>
+
+      </content>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="copyright">
+          <h5>Copyright 2021 All Rights Reserved RoomBook.</h5>
+        </div>
+      </footer>
+
+      
+      <script src="{{url_for('static',filename="scripts/calendar.js")}}">
+      </script>
+      <script>
+        const booked = JSON.parse('{{booked_date | tojson}}')
+        const price = {{room.price}}
+        setBooked(booked);
+        setRoomPrice(price)
+        renderCalendar();
+      </script>
+      <!-- Optional JavaScript; choose one of the two! -->
+
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+      <!-- Option 2: Separate Popper and Bootstrap JS -->
+      <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+        AOS.init({
+          once: true,
+        });
+      </script>
+    </body>
+
+</html>
