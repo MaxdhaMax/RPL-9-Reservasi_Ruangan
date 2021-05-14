@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="fill-data.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>RoomBook_Fill-Data</title>
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <header>
+      <div class="container my-4">
+          <nav class="navbar navbar-expand-lg navbar-light custom-nav">
+              <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                      <a class="navbar-brand" href="#">
+                          <img style="margin-top: -15px;" src="image/logo.jpeg">
+                          <span>ROOMBOOK</span>
+                      </a>
+                  </div>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;" id="navbarNavAltMarkup">
+                      <div class="navbar-nav">
+                          <a class="nav-link" style="color: #BB86FC;" href="homepage.html">Home</a>
+                          <a class="nav-link" style="color: white;" href="homepage.html">Ruangan</a>
+                          <div class="nav-profile">
+                              <li class="nav-item dropdown" style="color: white; display: flex;">
+                                  <img src="image/logo.jpeg" style="flex: 3;  margin-left: 25px;
+                                  width: 60px; height: 60px; border-radius: 50%;" alt="">
+                                  <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <!-- Nama username nya--> user
+                                  </a>
+                                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #3D3D3D;">
+                                          <li><a class="dropdown-item" href="#" style="color: white;">Profile</a></li>
+                                          <li><a class="dropdown-item" href="#" style="color: white;">History</a></li>
+                                          <li><a class="dropdown-item" href="#" style="color: white;">Log Out</a></li>
+                                  </ul>
+                              </li>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+          </nav>
+        </div>
+    <br><br>
+
+    </header>
+    <body>
+      <div class="bagian-tengah">
+        <div class="container-isi" data-aos="zoom-in" data-aos-duration="1000">
+          <div class="profile" >
+              <img src="image/logo.jpeg" alt="" data-aos="flip-left" data-aos-duration="500" data-aos-delay="1000">
+              <!-- Ganti username nya nanti -->
+              <span data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000">USERNAME</span>
+            <p style="margin-top: 45px;"><a href="">Info Ruangan</a></p>
+            <p style="margin-top: 25px;"><a href="">Fill in data <br> & Payment</a></p>
+          </div>
+
+          <div class="isi-utama">
+            <div class="information" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1500">
+
+              <h4>Your Information :</h4>
+                <form>
+                  <div class="mb-1">
+                      <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Contact-Name">
+                  </div>
+                </form>
+
+                <div class="contact-information">
+                  <div class="mb-1">
+                      <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Contact-Phone">
+                  </div>
+                  <div class="mb-1">
+                    <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Contact-Email">
+                  </div>
+                </div>
+            </div>
+
+            <div class="event-info" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1500">
+              <h4>Event Information :</h4>
+                <form>
+                  <div class="mb-1">
+                      <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Event's Name">
+                  </div>
+                  <div class="mb-1">
+                    <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Event's Organizer">
+                </div>
+                </form>
+            </div>
+
+            <div class="payment" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1500">
+              <h4>Payment Details :</h4>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                  Credit / Debit Card
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <li><button class="dropdown-item" type="button">OVO Rp ...</button></li>
+                  <li><button class="dropdown-item" type="button">Gopay Rp ...</button></li>
+                  <li><button class="dropdown-item" type="button">Credit Card</button></li>
+                </ul>
+              </div>
+            </div>
+            <br><br><br><br><br><br><br>
+
+            <div class="harga" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1500">
+              <h4>Total :</h4>
+              <h4 style="text-align: end;">......</h4>
+              <button type="button" class="btn btn-lg">Pesan</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-lokasi" data-aos="fade-up" data-aos-duration="500" data-aos-delay="2000">
+          <div class="keterangan-lokasi">
+            <div class="atas">
+              <h4>Nama Ruangan</h4>
+            </div>
+            <img src="image/logo.jpeg" alt="">
+            <div class="bawah">
+              <h5>Check In</h5>
+              <h5 style="text-align: end; color: white;">.....</h5>
+              <h5>Check Out</h5>
+              <h5 style="text-align: end; color: white;">.....</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="copyright">
+          <h5>Copyright 2021 All Rights Reserved RoomBook.</h5>
+      </div>
+  </footer>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+          once: true,
+      });
+    </script>
+  </body>
+</html>
