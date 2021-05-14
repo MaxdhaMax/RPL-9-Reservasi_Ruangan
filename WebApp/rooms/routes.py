@@ -68,7 +68,6 @@ def book_data(id, date):
         data = datas[0]
         output = booked_schema.dump(data)
         response = jsonify(output)
-        response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     except Exception as e:
         print(e)
