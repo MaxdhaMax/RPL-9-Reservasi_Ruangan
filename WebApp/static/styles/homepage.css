@@ -173,7 +173,7 @@ content .keterangan .lokasi {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
 }
 
@@ -184,12 +184,11 @@ content .keterangan .lokasi .detail{
 }
 
 content .keterangan .lokasi img {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
   border-radius: 10px;
 }
 content .keterangan .lokasi p {
-  margin-left: 10px;
   font-size: 12px;
 }
 content .keterangan .lokasi a {
@@ -197,19 +196,20 @@ content .keterangan .lokasi a {
   text-decoration: none;
 }
 content .keterangan .lokasi h4 {
-  margin-left: 10px;
   font-size: 24px;
 }
 content .keterangan .lokasi h5 {
-  margin-left: 10px;
   font-size: 16px;
 }
 content .keterangan .lokasi button {
   background-color: #03DAC6;
-  margin: auto;
-  margin-top: -5%;
-  margin-left: 80%;
   padding: 0px 9px;
+}
+
+content .keterangan .lokasi i {
+  padding: 3px 3px;
+  width: 100%;
+  height: 100%;
 }
 
 content .keterangan .filter button {

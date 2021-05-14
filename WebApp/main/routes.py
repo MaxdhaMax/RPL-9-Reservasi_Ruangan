@@ -1,8 +1,9 @@
+from copy import Error
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
-from WebApp.model import Post, Room
+from WebApp.model import Room
 from WebApp.rooms.forms import SearchForm
-import json
+from WebApp.rooms.utils import ListBetweenTwoDates
 
 main = Blueprint('main', __name__)
 
@@ -29,21 +30,32 @@ def home():
         room_choice.append(room.room_type)
     room_choice = list(dict.fromkeys(room_choice))
     keyword = form.ruangan.data
-    if (keyword):
-        try:
-            check_in = form.check_in.data.strftime('%Y-%m-%d')
-            check_out = form.check_out.data.strftime('%Y-%m-%d')
-        except:
-            pass
+    if (keyword and form.validate()):
         flash(f"Searching for {keyword}", category='info')
         rooms = Room.query.filter(Room.name.like(keyword) | Room.location.like(
             keyword) | Room.room_type.like(keyword))
-        return render_template("homepage.html", current_user=current_user, rooms=rooms, search=keyword, room_choice=room_choice, form=form)
+        hasCheckBooked = False
+        try:
+            check_in = form.check_in.data
+            check_out = form.check_out.data
+            if(check_in and check_out):
+                hasCheckBooked = True
+            for room in rooms:
+                room_bd = room.book_info
+                isBooked = list(filter(
+                    lambda x: x.date.strftime("%Y-%m-%d") in ListBetweenTwoDates(check_in, check_out), room_bd))
+                if(isBooked):
+                    room.available = False
+                else:
+                    room.available = True
+        except:
+            pass
+        return render_template("homepage.html", current_user=current_user, rooms=rooms, search=keyword, room_choice=room_choice, form=form, hasCheckBooked=hasCheckBooked)
     else:
         return render_template("homepage.html", current_user=current_user, room_choice=room_choice, form=form)
 
 
-@main.route("/about")
-@login_required
+@ main.route("/about")
+@ login_required
 def about():
     return render_template('about.html')

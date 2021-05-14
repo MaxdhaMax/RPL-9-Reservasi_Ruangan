@@ -67,10 +67,21 @@
           </div>
         </nav>
       </div> <br> <br>
-
+      <div>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+              <div class="alert alert-{{ category }} d-flex justify-content-center">
+                  {{ message }}
+              </div>
+              {% endfor %}
+          {% endif %}
+          {% endwith %}
+      </div>
     </header>
 
     <body>
+      
       <div class="container-isi" data-aos="zoom-in" data-aos-duration="1000">
         <div class="profile">
           <img src="{{url_for('static',filename="images/" + current_user.image_file)}}" alt="" data-aos="flip-left"
