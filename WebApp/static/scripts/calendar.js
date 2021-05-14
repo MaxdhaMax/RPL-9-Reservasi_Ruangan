@@ -17,7 +17,8 @@ async function getBookData(date) {
   try {
     const roomId = window.location.href.slice(window.location.href.lastIndexOf("/") + 1)
     console.log(roomId)
-    const res = await fetch(`http://localhost:5000/calendar/${roomId}/${datestr}`)
+    const baseURL = window.location.origin
+    const res = await fetch(baseURL + `/calendar/${roomId}/${datestr}`)
     const book_data = await res.json()
     return await book_data
   } catch (error) {
