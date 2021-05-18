@@ -15,7 +15,7 @@ const setRoomPrice = (price) => {
 async function getBookData(date) {
   var datestr = date.replaceAll("/", "-");
   try {
-    const roomId = window.location.href.slice(window.location.href.lastIndexOf("/") + 1)
+    const roomId = window.location.href.split(/[?#]/)[0].slice(window.location.href.split(/[?#]/)[0].lastIndexOf("/") + 1)
     console.log(roomId)
     const baseURL = window.location.origin
     const res = await fetch(baseURL + `/calendar/${roomId}/${datestr}`)

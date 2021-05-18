@@ -1,0 +1,325 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #242424;
+}
+
+header {
+  width: 100%;
+  height: auto;
+  background-color: #121212;
+  padding-top: 5px;
+}
+
+.container {
+  margin: 5px;
+}
+
+.custom-nav .navbar-brand img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.custom-nav .navbar-brand span {
+  color: white;
+  font-size: 35px;
+  margin-left: 20px;
+}
+
+.custom-nav .navbar-nav {
+  padding-top: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.custom-nav .navbar-nav .nav-link {
+  color: black;
+  font-size: 25px;
+}
+
+.container-isi {
+  width: 90%;
+  height: 50%;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: #3D3D3D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  opacity: 1;
+}
+
+.container-isi .profile {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: 20px;
+  border-right: 1px solid white;
+}
+
+.container-isi .profile img {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  border-radius: 50%;
+  margin-top: 40px;
+}
+
+.container-isi .profile .username {
+  margin: auto;
+  margin-left: 5%;
+  margin-top: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.container-isi .profile li {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: transparent;
+  border: transparent;
+}
+
+.container-isi .profile li.active {
+  text-decoration: none;
+  background-color: #9a6fcf;
+  border: #121212;
+}
+
+.container-isi .profile P {
+  font-size: 15px;
+  margin: auto;
+  margin-left: 5%;
+}
+
+.container-isi .profile a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.container-isi .profile a:hover {
+  color: #BB86FC;
+  background-color: #262626;
+  border: 0.2rem solid #262626;
+}
+
+.container-isi .isi-utama {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  padding-bottom: 10px;
+  height: 800px;
+  overflow-y: auto;
+}
+
+.container-isi .isi-utama .bagian-atas {
+  width: 90%;
+  margin-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid white;
+}
+
+.container-isi .isi-utama .bagian-atas i {
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-right: 5%;
+}
+
+.container-isi .isi-utama .bagian-atas h4 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.container-isi .isi-utama .bagian-tengah {
+  width: 90%;
+  margin-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+
+.container-isi .isi-utama .bagian-tengah a {
+  color:inherit; 
+  margin-left:2%;
+}
+
+.container-isi .isi-utama .bagian-tengah form div{
+  position: relative;
+}
+
+.container-isi .isi-utama .bagian-tengah .badge{
+  position: absolute;
+  left: 90%;
+  top: 25%;
+}
+.container-isi .isi-utama .ket-lokasi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.container-isi .isi-utama .ket-lokasi .gambar-utama {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+}
+
+.container-isi .isi-utama .ket-lokasi .gambar-utama img {
+  width: 400px;
+  height: 250px;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-right: 5px;
+  border-radius: 15px;
+}
+
+.container-isi .isi-utama .ket-lokasi .gambar-pinggir {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.container-isi .isi-utama .ket-lokasi .gambar-pinggir img {
+  width: 120px;
+  height: 80px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.container-isi .isi-utama table li {
+  padding: 0;
+}
+
+.container-isi .isi-utama table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.container-isi .isi-utama #pay-button {
+  background-color: #BB86FC;
+  color: white;
+  border: white;
+}
+
+.container-isi .isi-utama .harga {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  margin-top: 100px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container-isi .isi-utama .harga h4 {
+  width: 45%;
+  color: white;
+}
+
+.container-isi .isi-utama .harga input {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #BB86FC;
+  color: white;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+  margin-left: 30px;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .operator {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .operator h5 {
+  width: 100%;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .operator i {
+  width: 10%;
+  padding-top: 3px;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .operator h6 {
+  width: 50%;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .harga {
+  width: 25%;
+  margin-left: 35%;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .harga h6 {
+  font-size: 15px;
+}
+
+.container-isi .isi-utama .ket-lokasi .penjelasan .harga h3 {
+  margin-left: -15%;
+}
+
+.container-isi .isi-utama .desc-ruangan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 3%;
+}
+
+.container-isi .bag-info-ruangan {
+  -webkit-box-flex: 2.5;
+      -ms-flex: 2.5;
+          flex: 2.5;
+  background-color: #2A2E41;
+  background-size: cover;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container-isi .bag-info-ruangan .room-image {
+  height: 200px;
+  width: 250px;
+}
+
+
+footer {
+  width: 100%;
+}
+
+footer .copyright {
+  background-color: #121212;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+/*# sourceMappingURL=pesan.css.map */

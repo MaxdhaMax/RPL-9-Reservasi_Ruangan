@@ -114,10 +114,15 @@ def create_mockData(app):
                 daterand = datetime.strptime(random_date(
                     "2021/1/1", "2021/12/31", random.random()),
                     "%Y/%m/%d").date()
+                isBooked = Booked.query.filter_by(
+                    room_booked=room, date=daterand).first()
+                if(isBooked):
+                    continue
                 booked = Booked(
                     booked_by=user, room_booked=room,
                     date=daterand, event=event["event"],
                     organization=event["organization"],
+                    phone=event['phone'], email=event['email'],
                     name=event["name"])
                 db.session.add(booked)
                 db.session.commit()

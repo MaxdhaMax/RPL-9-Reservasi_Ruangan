@@ -10,6 +10,19 @@ def loadUser(user_id):
     return User.query.get(int(user_id))
 
 
+class Transaction(db.Model):
+    __tablename__ = 'transaction'
+    id = db.Column(db.String(19), primary_key=True)
+    price = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    room_id = db.Column(db.Integer, db.ForeignKey('room.id'), nullable=False)
+    book_info = db.relationship("Booked", backref="transaction", lazy=True)
+    status = db.Column(db.String(20))
+    payment_type = db.Column(db.String(10))
+    time = db.Column(db.DateTime, default=datetime.now)
+    data = db.Column(db.Text)
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
 
@@ -25,6 +38,7 @@ class User(db.Model, UserMixin):
         "Dosen", backref="usr", lazy=True)
     staff = db.relationship(
         "Staff", backref="usr", lazy=True)
+    transaction = db.relationship("Transaction", backref="user", lazy=True)
 
     def get_reset_token(self, expire_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expire_sec)
@@ -114,8 +128,11 @@ class Booked(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
     date = db.Column(db.Date)
-    event = db.Column(db.String(50))
-    organization = db.Column(db.String(50))
-    name = db.Column(db.String(50))
+    event = db.Column(db.String(50), nullable=False)
+    organization = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(50), nullable=False)
     booked_by = db.relationship("User", backref="book_info", lazy="select")
     room_booked = db.relationship("Room", backref="book_info", lazy="select")
+    transaction_id = db.Column(db.String(19), db.ForeignKey('transaction.id'))

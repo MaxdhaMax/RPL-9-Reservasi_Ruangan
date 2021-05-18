@@ -85,6 +85,19 @@ body {
     margin-left: 5%;
   }
   
+  .container-isi .profile li {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: transparent;
+    border: transparent;
+  }
+
+  .container-isi .profile li.active {
+    text-decoration: none;
+    background-color: #9a6fcf;
+    border: #121212;
+  }
+
   .container-isi .profile a {
     text-decoration: none;
     color: #ffffff;

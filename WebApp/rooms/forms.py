@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField
+from wtforms import StringField, SubmitField
+from wtforms.fields.core import SelectField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from flask_login import current_user
@@ -10,7 +11,7 @@ from datetime import datetime
 
 class SearchForm(FlaskForm):
     ruangan = StringField("Ruangan", validators=[
-        DataRequired()])
+        Optional()])
     check_in = DateField("Check-in", format='%Y-%m-%d',
                          validators=[Optional()])
     check_out = DateField("Check-out", format='%Y-%m-%d',
@@ -38,3 +39,26 @@ class SearchForm(FlaskForm):
         if(self.check_in.data > self.check_out.data):
             raise ValidationError(
                 'Check-out is smaller than Check-in')
+
+
+class BookForm(FlaskForm):
+    name = StringField("Full Name", validators=[
+        DataRequired()])
+    number = StringField("Phone Number", validators=[
+        DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    event_name = StringField("Event Name", validators=[
+        DataRequired()])
+    event_organizer = StringField("Event Organizer", validators=[
+        DataRequired()])
+    payment = SelectField("Payment", validators=[DataRequired()],
+                          choices=[("BCA", "Transfer BCA"), ("BNI", "Transfer BNI"), ("BRI", "Transfer BRI"), ("GOPAY", "Gopay")])
+    submit = SubmitField("Pesan")
+
+    def validate_number(self, number):
+        if(number.data[0] != "+"):
+            raise ValidationError(
+                'Masukan nomor telephone diawali dengan +')
+        if(len(number.data) < 10):
+            raise ValidationError(
+                'Please enter a valid number')

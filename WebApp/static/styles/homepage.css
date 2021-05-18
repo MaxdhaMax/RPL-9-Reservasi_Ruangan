@@ -213,10 +213,24 @@ content .keterangan .lokasi i {
 }
 
 content .keterangan .filter button {
-  background-color: #3D3D3D;
   width: 12%;
   margin-bottom: 20px;
   color: white;
+}
+
+content .keterangan .filter button.btn-secondary {
+  background-color: #3D3D3D;
+}
+
+
+content .keterangan .pagination .active {
+  background-color: #BB86FC;
+  border: #121212 solid 1px;
+}
+
+content .keterangan .pagination .btn-outline-light:hover {
+  background-color: #c9a1fa;
+  border: #121212 solid 1px;
 }
 
 footer .about {

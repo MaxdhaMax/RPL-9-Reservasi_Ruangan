@@ -1,7 +1,8 @@
 from copy import Error
+from operator import and_
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
-from WebApp.model import Room
+from WebApp.model import Booked, Room
 from WebApp.rooms.forms import SearchForm
 from WebApp.rooms.utils import ListBetweenTwoDates
 
@@ -30,29 +31,39 @@ def home():
         room_choice.append(room.room_type)
     room_choice = list(dict.fromkeys(room_choice))
     keyword = form.ruangan.data
-    if (keyword and form.validate()):
+    page = request.args.get('page', 1, type=int)
+    if(keyword):
         flash(f"Searching for {keyword}", category='info')
         rooms = Room.query.filter(Room.name.like(keyword) | Room.location.like(
             keyword) | Room.room_type.like(keyword))
-        hasCheckBooked = False
-        try:
-            check_in = form.check_in.data
-            check_out = form.check_out.data
-            if(check_in and check_out):
-                hasCheckBooked = True
-            for room in rooms:
-                room_bd = room.book_info
-                isBooked = list(filter(
-                    lambda x: x.date.strftime("%Y-%m-%d") in ListBetweenTwoDates(check_in, check_out), room_bd))
-                if(isBooked):
-                    room.available = False
-                else:
-                    room.available = True
-        except:
-            pass
-        return render_template("homepage.html", current_user=current_user, rooms=rooms, search=keyword, room_choice=room_choice, form=form, hasCheckBooked=hasCheckBooked)
     else:
-        return render_template("homepage.html", current_user=current_user, room_choice=room_choice, form=form)
+        flash(f"Searching All Room", category='info')
+        rooms = Room.query
+    hasCheckBooked = False
+    check_in = form.check_in.data
+    check_out = form.check_out.data
+    try:
+        if(check_in and check_out):
+            hasCheckBooked = True
+        for room in rooms:
+            room_bd = room.book_info
+            isBooked = list(filter(
+                lambda x: x.date.strftime("%Y-%m-%d") in ListBetweenTwoDates(check_in, check_out), room_bd))
+            if(isBooked):
+                room.available = False
+            else:
+                room.available = True
+    except Error as e:
+        print(e)
+        pass
+    tersediaFilter = request.args.get("tersediaFilter")
+    print(tersediaFilter)
+    if(tersediaFilter):
+        rooms = rooms.filter(~Room.book_info.any(
+            (Booked.date.in_(ListBetweenTwoDates(check_in, check_out)))))
+    rooms = rooms.paginate(page=page, per_page=4)
+    return render_template("homepage.html", current_user=current_user, rooms=rooms, search=keyword, room_choice=room_choice, form=form,
+                           hasCheckBooked=hasCheckBooked, check_in=check_in, check_out=check_out, tersediaFilter=tersediaFilter)
 
 
 @ main.route("/about")
