@@ -190,6 +190,20 @@ def book_data(id, date):
     return jsonify('Not Found')
 
 
-@rooms.route("/ffc1c133a932cf6ac63f0bbe22f94a69", methods=["GET", "POST"])
+@rooms.route("/notification-handling", methods=["GET", "POST"])
 def notification():
+    try:
+        core = midtransclient.CoreApi(
+            is_production=False,
+            server_key='SB-Mid-server-UKoo4wuXPkpkoOx8dFWla_BS',
+            client_key='SB-Mid-client-BfoyzFWFCAh_9V25'
+        )
+        request_json = request.get_json()
+        transaction_status_dict = core.transactions.notification(request_json)
+
+        order_id = request_json['order_id']
+        trans = Transaction.query.filter_by(id=order_id).first()
+        CheckTransactionStatus(trans)
+    except:
+        pass
     return jsonify("NOPE")

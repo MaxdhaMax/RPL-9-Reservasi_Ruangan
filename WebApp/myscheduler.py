@@ -1,4 +1,4 @@
-from WebApp import scheduler, db
+from WebApp import db
 from WebApp.model import Transaction
 import requests
 import json
@@ -32,12 +32,3 @@ def CheckTransactionStatus(trans: Transaction):
     elif (transaction_status == 'pending'):
         pass
     print(transaction_status)
-
-
-@scheduler.task('interval', id='do_job_1', seconds=60 * 15)
-def CheckAllTransactionStatus():
-    print("Checking Transaction")
-    with scheduler.app.app_context():
-        transAll = Transaction.query.filter_by(status="pending").all()
-        for trans in transAll:
-            CheckTransactionStatus(trans)

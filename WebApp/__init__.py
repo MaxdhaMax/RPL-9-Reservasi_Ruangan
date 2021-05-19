@@ -6,7 +6,6 @@ from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
-from flask_apscheduler import APScheduler
 from WebApp.config import Config
 
 
@@ -16,8 +15,6 @@ ma = Marshmallow()
 loginManager = LoginManager()
 loginManager.login_view = 'users.login'
 loginManager.login_message_category = 'info'
-scheduler = APScheduler()
-scheduler.api_enabled = True
 
 mail = Mail()
 
@@ -32,11 +29,7 @@ def create_app(config_class=Config):
     loginManager.init_app(app)
     mail.init_app(app)
     ma.init_app(app)
-    scheduler.init_app(app)
     CORS(app, resources={r"/*": {"origins": "*"}})
-
-    from WebApp.myscheduler import CheckAllTransactionStatus
-    scheduler.start()
 
     from WebApp.users.routes import users
     from WebApp.posts.routes import posts
