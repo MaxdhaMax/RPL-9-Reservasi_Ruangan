@@ -119,7 +119,7 @@
                 <div class="mb-3">
                 {{ form.ruangan.label(class="form-control-label") }}
                     {% if form.ruangan.errors %}
-                        {{ form.ruangan(class="form-control is-invalid") }}
+                        {{ form.ruangan(class="form-control is-invalid", id="autocomplete",placeholder="Nama, Lokasi, atau Tipe Ruangan") }}
                         <div class="invalid-feedback">
                             {% for error in form.ruangan.errors %}
                                 <span>{{ error }}</span>
@@ -135,30 +135,34 @@
                 <div class="mb-3">
                 {{ form.check_in.label(class="form-control-label") }}
                     {% if form.check_in.errors %}
-                        {{ form.check_in(class="form-control is-invalid") }}
+                        {{ form.check_in(class="form-control is-invalid", id="form-check-in") }}
                         <div class="invalid-feedback">
                             {% for error in form.check_in.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.check_in(class="form-control") }}
+                        {{ form.check_in(class="form-control", id="form-check-in") }}
                     {% endif %}
                 </div>
                 <div class="mb-3">
                 {{ form.check_out.label(class="form-control-label") }}
                     {% if form.check_out.errors %}
-                        {{ form.check_out(class="form-control is-invalid") }}
+                        {{ form.check_out(class="form-control is-invalid", id="form-check-out") }}
                         <div class="invalid-feedback">
                             {% for error in form.check_out.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.check_out(class="form-control") }}
+                        {{ form.check_out(class="form-control", id="form-check-out") }}
                     {% endif %}
                 </div>
-                {{form.submit(class = "btn btn-sm", style="background-color: #BB86FC; width: 100%; margin-top: 10px;")}}
+                <div class="btn-group" style="width: 100%;">
+                    <input type="button" id="reset-button" value="Clear All" class="btn btn-sm btn-danger me-4" style="width: 25%; margin-top: 10px;">
+                    {{form.submit(class = "btn btn-sm", id="find")}}
+                </div>
+                
             </form>
         </div>
         <div class="keterangan container" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="250">
@@ -166,9 +170,9 @@
             {% if rooms.items %}
                 <div class="filter row">
                     {% if tersediaFilter %}
-                        <button class="btn btn-sm btn-success" onclick="location.href='{{ url_for('main.home', page=page_num, ruangan=search,check_in=check_in,check_out=check_out) }}'">Filter Tersedia</button>
+                        <button class="btn btn-sm btn-success" onclick="location.href='{{ url_for('main.home', page=page_num, ruangan=search,check_in=check_in,check_out=check_out) }}'">Filter Ruangan Tersedia</button>
                     {% else %}
-                        <button class="btn btn-sm btn-secondary" onclick="location.href='{{ url_for('main.home', page=page_num, ruangan=search,check_in=check_in,check_out=check_out, tersediaFilter=True)}}'">Filter Tersedia</button>
+                        <button class="btn btn-sm btn-secondary" onclick="location.href='{{ url_for('main.home', page=page_num, ruangan=search,check_in=check_in,check_out=check_out, tersediaFilter=True)}}'">Filter Ruangan Tersedia</button>
                     {% endif %}
                 </div>
                 {% for room in rooms.items %}

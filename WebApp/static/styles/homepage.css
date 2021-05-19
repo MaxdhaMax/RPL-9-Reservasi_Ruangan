@@ -160,6 +160,18 @@ content .search form {
   color: white;
 }
 
+content .search #find{
+  background-color: #BB86FC;
+  width: 100%; 
+  margin-top: 10px;
+  color:white;
+  border:#121212 solid 1px;
+}
+
+content .search #find:hover {
+  background-color: #9169c2;
+}
+
 content .keterangan {
   margin: auto;
   -webkit-box-flex: 2;
@@ -213,7 +225,7 @@ content .keterangan .lokasi i {
 }
 
 content .keterangan .filter button {
-  width: 12%;
+  width: 15%;
   margin-bottom: 20px;
   color: white;
 }

@@ -94,3 +94,9 @@ document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
 }
+
+document.getElementById("reset-button").addEventListener("click",()=>{
+    document.getElementById("autocomplete").value = ""
+    document.getElementById("form-check-in").value = ""
+    document.getElementById("form-check-out").value = ""
+})

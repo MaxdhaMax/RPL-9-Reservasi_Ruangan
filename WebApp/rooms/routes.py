@@ -98,7 +98,11 @@ def room_book_transaction(id, transID):
     trans = Transaction.query.filter_by(id=transID).first_or_404()
     if(current_user != trans.user):
         abort(403)
-    if(trans.status in ["deny", "cancel", "expire"]):
+    CheckTransactionStatus(trans)
+    if(trans.status in ["capture", "settlement"]):
+        flash("Your transaction is successfull, successfully booked your room",
+              category="success")
+    elif(trans.status in ["deny", "cancel", "expire"]):
         if(trans.status == "deny"):
             flash(
                 "[FAILED] This transaction has been denied and no longer available", category="danger")
@@ -132,21 +136,6 @@ def room_book_transaction(id, transID):
         return render_template("payment.html", current_user=current_user, selected_date=selected_date, room=room,
                                trans=trans, book_info=book_info, priceFormatted=priceFormatted, priceSumFormatted=priceSumFormatted,
                                expire=expire, payment_type=trans.payment_type, status=status, qrURL=qrURL)
-
-
-@rooms.route("/room/<int:id>/book/<string:transID>/check")
-@login_required
-def room_book_transaction_check(id, transID):
-    room = Room.query.filter_by(id=id).first_or_404()
-    trans = Transaction.query.filter_by(id=transID).first_or_404()
-    if(current_user != trans.user):
-        abort(403)
-    CheckTransactionStatus(trans)
-    if(trans.status in ["capture", "settlement"]):
-        flash("Your transaction is successfull, successfully booked your room",
-              category="success")
-        return redirect(url_for('rooms.room', id=id))
-    return redirect(url_for('rooms.room_book_transaction', id=id, transID=transID))
 
 
 @rooms.route("/room/<int:id>/book/<string:transID>/cancel")
