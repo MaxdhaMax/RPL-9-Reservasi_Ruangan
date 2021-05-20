@@ -1,12 +1,14 @@
 html {
   margin: 0;
   height: 100%;
+  overflow: auto;
 }
 
 body {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#212121), to(#212121));
   background-image: linear-gradient(#212121, #212121);
   height: 100%;
+  overflow: auto;
 }
 
 body h6 {
@@ -21,6 +23,7 @@ body .container-body {
   background-size: auto;
   background-position: bottom;
   height: 100%;
+  overflow: auto;
 }
 
 body .container-utama {

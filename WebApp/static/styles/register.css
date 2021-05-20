@@ -1,12 +1,14 @@
 html {
   width: 100%;
   height: 100%;
+  overflow: auto;
 }
 body {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#212121), to(#212121));
   background-image: linear-gradient(#212121, #212121);
   width: 100%;
   height: 100%;
+  overflow: auto;
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
@@ -22,6 +24,8 @@ body .container-body {
   background-repeat: no-repeat;
   background-size: auto;
   background-position: bottom;
+  overflow: auto;
+  overflow-x: hidden;
 }
 body .container-utama {
   width: 25%;

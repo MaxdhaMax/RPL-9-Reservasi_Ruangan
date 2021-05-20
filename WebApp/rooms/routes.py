@@ -120,7 +120,8 @@ def room_book_transaction(id, transID):
     priceSumFormatted = f'Rp {priceSum:,}'.replace(
         ",", ".") + ',00'
     trans_data = json.loads(trans.data)
-    expire = (trans.time + timedelta(hours=6)).strftime("%m/%d/%Y, %H:%M:%S")
+    expire = (trans.time + timedelta(hours=6)
+              ).strftime("%d/%m/%Y, %H:%M:%S") + " WIB"
     print(expire)
     if(trans.payment_type in ["BNI", "BCA", "BRI"]):
         va_numbers = trans_data["va_numbers"][0]["va_number"]

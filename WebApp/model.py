@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from WebApp import db, loginManager
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
@@ -19,7 +19,8 @@ class Transaction(db.Model):
     book_info = db.relationship("Booked", backref="transaction", lazy=True)
     status = db.Column(db.String(20))
     payment_type = db.Column(db.String(10))
-    time = db.Column(db.DateTime, default=datetime.now)
+    time = db.Column(
+        db.DateTime, default=datetime.utcnow() + timedelta(hours=7))
     data = db.Column(db.Text)
 
 
