@@ -102,6 +102,7 @@ def room_book_transaction(id, transID):
     if(trans.status in ["capture", "settlement"]):
         flash("Your transaction is successfull, successfully booked your room",
               category="success")
+        return redirect(url_for('rooms.room', id=id))
     elif(trans.status in ["deny", "cancel", "expire"]):
         if(trans.status == "deny"):
             flash(
@@ -122,7 +123,7 @@ def room_book_transaction(id, transID):
     trans_data = json.loads(trans.data)
     expire = (trans.time + timedelta(hours=6)
               ).strftime("%d/%m/%Y, %H:%M:%S") + " WIB"
-    print(expire)
+    print(trans_data)
     if(trans.payment_type in ["BNI", "BCA", "BRI"]):
         va_numbers = trans_data["va_numbers"][0]["va_number"]
         va_numbers = " ".join(
