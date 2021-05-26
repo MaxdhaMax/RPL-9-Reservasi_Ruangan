@@ -1,33 +1,14 @@
+from os import abort
 from flask import Blueprint, render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 from WebApp import db, bcrypt
-from WebApp.model import User
+from WebApp.model import Booked, User
 from WebApp.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                 RequestResetForm, ResetPasswordForm)
 from WebApp.users.utils import save_picture, send_reset_email
+from datetime import timedelta,datetime 
 
 users = Blueprint('users', __name__)
-
-
-@users.route("/user", methods=["POST", "GET"])
-def user():
-    email = None
-    if "user" in session:
-        user = session["user"]
-        if(request.method == "POST"):
-            email = request.form["email"]
-            session["email"] = email
-            found_user = Users.query.filter_by(name=user).first()
-            found_user.email = email
-            db.session.commit()
-            flash("Email was saved!")
-        else:
-            if("email" in session):
-                email = session["email"]
-        return render_template("user.html", user=user)
-    else:
-        flash("You are not logged in!", "info")
-        return redirect(url_for("users.login"))
 
 
 @users.route("/login", methods=["GET", "POST"])
@@ -72,6 +53,47 @@ def logout():
     return redirect(url_for("main.home"))
 
 
+@users.route("/history")
+@login_required
+def history():
+    user = current_user
+    trans = user.transaction
+    pending_trans = [t for t in trans if t.status == "pending"]
+    for t in pending_trans:
+        t.formatted_price = f'Rp {t.price:,}'.replace(",", ".") + ',00'
+        t.expire = (t.time + timedelta(hours=6)).strftime("%d/%m/%Y, %H:%M:%S") + " WIB"
+    print(pending_trans)
+    booked = user.book_info
+    booked_and_payed = [o for o in booked if o.transaction.status == "capture" or o.transaction.status== "settlement"]
+    booked_and_payed.sort(key=lambda x: x.date, reverse=True)
+    return render_template("history.html", booked=booked_and_payed, pending_trans=pending_trans)
+
+@users.route("/history/<string:book_id>")
+@login_required
+def book_detail(book_id):
+    user = current_user
+    book_info = Booked.query.filter_by(id=book_id).first_or_404()
+    if book_info.booked_by != current_user:
+        abort(403)
+    date = book_info.date
+    room = book_info.room_booked
+    return render_template("book_detail.html", book_info=book_info, room=room, date=date)
+
+@users.route("/history/<string:book_id>/cancel")
+@login_required
+def book_detail_cancel(book_id):
+    user = current_user
+    book_info = Booked.query.filter_by(id=book_id).first_or_404()
+    if book_info.booked_by != current_user:
+        abort(403)
+    try:
+        db.session.delete(book_info)
+        db.session.commit()
+    except:
+        pass
+    flash(f"Your booking has been canceled", "info")
+    return redirect(url_for('users.history'))
+
 @users.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
@@ -91,15 +113,6 @@ def account():
     image_file = url_for('static', filename='images/' +
                          current_user.image_file)
     return render_template('account.html', title="Account", image_file=image_file, form=form)
-
-
-@users.route("/user/<string:username>")
-def user_posts(username):
-    page = request.args.get('page', 1, type=int)
-    user = User.query.filter_by(username=username).first_or_404()
-    # posts = Post.query.filter_by(author=user).order_by(
-    #     Post.datePosted.desc()).paginate(page=page, per_page=5)
-    return render_template("user_posts.html", user=user)
 
 
 @users.route("/reset_password", methods=["GET", "POST"])

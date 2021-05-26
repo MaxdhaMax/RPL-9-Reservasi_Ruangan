@@ -3,7 +3,7 @@ from WebApp import db, loginManager
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
-
+from uuid import uuid4
 
 @loginManager.user_loader
 def loadUser(user_id):
@@ -23,6 +23,8 @@ class Transaction(db.Model):
         db.DateTime, default=datetime.utcnow() + timedelta(hours=7))
     data = db.Column(db.Text)
 
+    def __repr__(self):
+        return f"Transaction('{self.id}', '{self.payment_type}', '{self.time}', '{self.status}')"
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
@@ -125,7 +127,7 @@ class Person_In_Charge(db.Model):
 
 class Booked(db.Model):
     __tablename__ = 'booked'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(17), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
     date = db.Column(db.Date)
@@ -137,3 +139,15 @@ class Booked(db.Model):
     booked_by = db.relationship("User", backref="book_info", lazy="select")
     room_booked = db.relationship("Room", backref="book_info", lazy="select")
     transaction_id = db.Column(db.String(19), db.ForeignKey('transaction.id'))
+
+    def __init__(self,date,event,organization,name,email,phone,booked_by,room_booked, transaction_id=None):
+        self.date = date
+        self.event = event
+        self.organization = organization
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.booked_by = booked_by
+        self.room_booked = room_booked
+        self.transaction_id = transaction_id
+        self.id = "br-" + uuid4().hex[:14]

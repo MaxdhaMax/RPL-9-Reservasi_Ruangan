@@ -15,7 +15,7 @@ import json
 rooms = Blueprint('rooms', __name__)
 
 
-@rooms.route("/room/<int:id>", methods=["GET", "POST"])
+@rooms.route("/room/<string:id>", methods=["GET", "POST"])
 @login_required
 def room(id):
     room = Room.query.filter_by(id=id).first_or_404()
@@ -33,7 +33,7 @@ def room(id):
     return render_template('info_ruangan.html', booked_date=booked_date, current_user=current_user, room=room, pic=person_in_charge)
 
 
-@rooms.route("/room/<int:id>/book", methods=["GET", "POST"])
+@rooms.route("/room/<string:id>/book", methods=["GET", "POST"])
 @login_required
 def room_book(id):
     try:
@@ -70,6 +70,7 @@ def room_book(id):
                                 date=dateobj, event=event,
                                 organization=organizer, name=name, email=email, phone=phone,
                                 transaction_id=transID)
+                print(booked.id, booked.transaction_id)
                 db.session.add(booked)
             core_api = midtransclient.CoreApi(
                 is_production=False,
@@ -91,7 +92,7 @@ def room_book(id):
     return render_template("fill-data.html", room=room, current_user=current_user, form=form, selected_date=selected_date, price=price_formatted)
 
 
-@rooms.route("/room/<int:id>/book/<string:transID>")
+@rooms.route("/room/<string:id>/book/<string:transID>")
 @login_required
 def room_book_transaction(id, transID):
     room = Room.query.filter_by(id=id).first_or_404()
@@ -102,7 +103,7 @@ def room_book_transaction(id, transID):
     if(trans.status in ["capture", "settlement"]):
         flash("Your transaction is successfull, successfully booked your room",
               category="success")
-        return redirect(url_for('rooms.room', id=id))
+        return redirect(url_for('users.history'))
     elif(trans.status in ["deny", "cancel", "expire"]):
         if(trans.status == "deny"):
             flash(
@@ -140,7 +141,7 @@ def room_book_transaction(id, transID):
                                expire=expire, payment_type=trans.payment_type, status=status, qrURL=qrURL)
 
 
-@rooms.route("/room/<int:id>/book/<string:transID>/cancel")
+@rooms.route("/room/<string:id>/book/<string:transID>/cancel")
 @login_required
 def room_book_cancel(id, transID):
     room = Room.query.filter_by(id=id).first_or_404()
@@ -159,7 +160,7 @@ def room_book_cancel(id, transID):
     return redirect(url_for("rooms.room", id=id))
 
 
-@ rooms.route("/calendar/<int:id>")
+@ rooms.route("/calendar/<string:id>")
 @ login_required
 def calendar(id):
     user = current_user
@@ -172,7 +173,7 @@ def calendar(id):
     return render_template('calendar.html', booked_date=booked_date)
 
 
-@ rooms.route("/calendar/<int:id>/<string:date>", methods=["GET"])
+@ rooms.route("/calendar/<string:id>/<string:date>", methods=["GET"])
 def book_data(id, date):
     date = date.replace("-", "/")
     room = Room.query.filter_by(id=id).first()

@@ -25,60 +25,65 @@
     <!-- NAVBAR -->
     <header>
       <div class="container my-4">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light custom-nav">
-          <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <a class="navbar-brand" href="{{url_for('main.home')}}">
-                <img style="margin-top: -15px;" src="{{url_for('static', filename="images/logo.jpeg")}}">
-                <span>ROOMBOOK</span>
-              </a>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;"
-              id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-link" style="color: #BB86FC;" href="{{url_for('main.home')}}">Home</a>
-                <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Ruangan</a>
-                <div class="nav-profile">
-                  <li class="nav-item dropdown" style="color: white; display: flex;">
-                    <img src="{{url_for('static', filename="images/" + current_user.image_file)}}" style="flex: 3;  margin-left: 25px;
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-light custom-nav">
+                    <div class="container-fluid" style="margin-bottom: -60px; height: 80px;">
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <a class="navbar-brand" href="{{url_for('main.home')}}">
+                                <img style="margin-top: -15px;"
+                                    src="{{url_for('static', filename="images/logo.jpeg")}}">
+                                <span>ROOMBOOK</span>
+                            </a>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" style="background-color: transparent;"
+                            id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-link" style="color: white;" href="{{url_for('main.home')}}">Home</a>
+                                <a class="nav-link" style="color: white" href="{{url_for('users.history')}}">Transaction</a>
+                                <div class="nav-profile">
+                                    <li class="nav-item dropdown" style="color: white; display: flex;">
+                                        <img src="{{url_for('static', filename="images/" + current_user.image_file)}}"
+                                            style="flex: 3;  margin-left: 25px;
                                 width: 60px; height: 60px; border-radius: 50%;" alt="">
-                    <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#" id="navbarDropdown"
-                      role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{current_user.username}}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
-                      style="background-color: #3D3D3D;">
-                      <li><a class="dropdown-item" href="{{url_for('users.account')}}" style="color: white;">Profile</a>
-                      </li>
-                      <li><a class="dropdown-item" href="#"
-                          style="color: white; border-bottom: 1px solid white;">History</a></li>
-                      <li><a class="dropdown-item" href="{{url_for('users.logout')}}" style="color: #BB86FC;">Log
-                          Out</a></li>
-                    </ul>
-                  </li>
-                </div>
+                                        <a class="nav-link dropdown-toggle" style="color: white; flex: 1;" href="#"
+                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            {{current_user.username}}
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                                            style="background-color: #3D3D3D;">
+                                            <li><a class="dropdown-item" href="{{url_for('users.account')}}"
+                                                    style="color: white;">Profile</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{url_for('users.logout')}}"
+                                                    style="color: #BB86FC;">Log
+                                                    Out</a></li>
+                                        </ul>
+                                    </li>
+                                </div>
 
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div> <br> <br>
+
+            <div class="row">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} d-flex justify-content-center">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
             </div>
-          </div>
-        </nav>
-      </div> <br> <br>
-      <div>
-          {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-              {% for category, message in messages %}
-              <div class="alert alert-{{ category }} d-flex justify-content-center">
-                  {{ message }}
-              </div>
-              {% endfor %}
-          {% endif %}
-          {% endwith %}
-      </div>
     </header>
 
     <body>

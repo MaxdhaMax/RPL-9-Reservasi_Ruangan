@@ -109,7 +109,7 @@ def create_mockData(app):
         for i in range(1, len(RoomList) + 1):
             print(f"[+] Booking room {i}")
             for event in EventList:
-                user = User.query.filter_by(id=random.randint(1, 149)).first()
+                user = User.query.filter_by(id=random.randint(2, 149)).first()
                 room = Room.query.filter_by(id=i).first()
                 daterand = datetime.strptime(random_date(
                     "2021/1/1", "2021/12/31", random.random()),
