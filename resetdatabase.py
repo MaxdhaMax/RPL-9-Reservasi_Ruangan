@@ -95,7 +95,7 @@ def create_mockData(app, create_admin=True):
             information = roomdat["information"]
             list_image_file = []
             for j in range(5):
-                name_image_file=f"room_image_{random.randint(0, 44)}.jpeg"
+                name_image_file = f"room_image_{random.randint(1, 60)}.jpeg"
                 image_file = Room_Image_File(name=name_image_file)
                 list_image_file.append(image_file)
             pic_name = pic["name"]
@@ -107,7 +107,7 @@ def create_mockData(app, create_admin=True):
             room = Room(name=name, location=location,
                         room_type=room_type, information=information,
                         capacity=random.randint(100, 150), price=random.randint(100000, 300000),
-                        person_in_charge=list_person_in_charge,image_file=list_image_file)
+                        person_in_charge=list_person_in_charge, image_file=list_image_file)
             room_id_list.append(room.id)
             db.session.add(room)
             db.session.commit()
@@ -163,7 +163,6 @@ USAGE:
         elif opt in ("-p", "--prod"):
             mode = "prod"
 
-
     if(mode == "dev"):
         drop_everything(app)
         create_database(app)
@@ -171,12 +170,10 @@ USAGE:
     elif(mode == "prod"):
         drop_everything(app)
         create_database(app)
-        create_mockData(app,create_admin=False)
+        create_mockData(app, create_admin=False)
     else:
         print(error_message)
 
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-    
-    
