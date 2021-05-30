@@ -88,18 +88,18 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
             <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{url_for('static', filename="images/Foto CCR - Resized.jpg")}}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{url_for('static', filename="images/Foto Dept Ilkom - Resized.jpg")}}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{url_for('static', filename="images/Foto Rektorat - Resized.jpg")}}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{url_for('static', filename="images/Foto Rektorat - Top View - Resized.jpg")}}" class="d-block w-100" alt="...">
-            </div>
+                <div class="carousel-item active">
+                    <img src="{{url_for('static', filename="images/Foto CCR - Resized.jpg")}}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{url_for('static', filename="images/Foto Dept Ilkom - Resized.jpg")}}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{url_for('static', filename="images/Foto Rektorat - Resized.jpg")}}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{url_for('static', filename="images/Foto Rektorat - Top View - Resized.jpg")}}" class="d-block w-100" alt="...">
+                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -181,11 +181,11 @@
                 {% for room in rooms.items %}
                 <div class="lokasi row">
                     <div class="col-3">
-                        <img src="{{url_for('static', filename="images/" + room.image_file)}}" alt="">
+                        <img src="{{url_for('static', filename="images/" + room.image_file[0].name)}}" alt="">
                     </div>
                     <div class="detail col">
                         <div class="row">
-                            <h4 data-bs-toggle="tooltip" data-bs-placement="top" title="Informasi lebih lanjut tentang {{room.name}}"><a href="">{{room.name}}</a></h4>
+                            <h4 data-bs-toggle="tooltip" data-bs-placement="top" title="Informasi lebih lanjut tentang {{room.name}}"><a href="{{url_for('rooms.room',id=room.id)}}">{{room.name}}</a></h4>
                         </div>
                         <div class="row">
                             <h5 data-bs-toggle="tooltip" data-bs-placement="top" title="Lokasi-Tipe Ruangan (Kapasitas)">{{room.location}} - {{room.room_type}} ({{room.capacity}})</h5>

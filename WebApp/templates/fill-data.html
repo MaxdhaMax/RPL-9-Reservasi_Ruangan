@@ -203,7 +203,7 @@
               <h1 class="text-center" style="color: #BB86FC;">{{room.name}}</h1>
             </div>
             <div class="row justify-content-center mt-5">
-              <img src="{{url_for('static',filename="images/"+room.image_file)}}" class="room-image img-fluid rounded img-thumbnail">
+              <img src="{{url_for('static',filename="images/"+room.image_file[0].name)}}" class="room-image">
             </div>
             <div class="row mt-5 mb-2 ms-3">
               <h4 class="text-white">Picked Date</h4>

@@ -309,6 +309,7 @@ header {
 .container-isi .bag-info-ruangan .room-image {
   height: 200px;
   width: 250px;
+  object-fit: cover;
 }
 
 

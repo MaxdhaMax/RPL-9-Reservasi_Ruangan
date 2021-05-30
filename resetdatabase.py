@@ -1,15 +1,13 @@
 from WebApp import db, create_app, bcrypt
-from WebApp.model import Room, User, Person_In_Charge, Booked
+from WebApp.model import Room, User, Person_In_Charge, Booked, Room_Image_File
 from mock_data import RoomList, EventList, UserList, PersonInCharge
 from mock_data.utils import random_date
 from datetime import datetime
 import random
 import json
-
-
-def drop_database(app):
-    with app.app_context():
-        db.drop_all()
+import sys
+import getopt
+import os
 
 
 def drop_everything(app):
@@ -61,21 +59,22 @@ def create_database(app):
         db.create_all()
 
 
-def create_mockData(app):
+def create_mockData(app, create_admin=True):
     with app.app_context():
-        username = "admin"
-        password = "Admin"
-        email = "admin@gmail.com"
-        hashedPassword = bcrypt.generate_password_hash(
-            "Admin").decode('utf-8')
-        user = User(username=username,
-                    email=email, password=hashedPassword)
-        db.session.add(user)
-        db.session.commit()
-        print(f"[+] Generate admin user")
-        print(f"    [>] username = {username}")
-        print(f"    [>] email = {email}")
-        print(f"    [>] password = {password}")
+        if(create_admin):
+            username = "admin"
+            password = "Admin"
+            email = "admin@gmail.com"
+            hashedPassword = bcrypt.generate_password_hash(
+                "Admin").decode('utf-8')
+            user = User(username=username,
+                        email=email, password=hashedPassword)
+            db.session.add(user)
+            db.session.commit()
+            print(f"[+] Generate admin user")
+            print(f"    [>] username = {username}")
+            print(f"    [>] email = {email}")
+            print(f"    [>] password = {password}")
 
         for i, user_data in enumerate(UserList):
             print(f"[+] Generating user {i}")
@@ -87,12 +86,18 @@ def create_mockData(app):
             db.session.add(user)
             db.session.commit()
 
+        room_id_list = []
         for i, (roomdat, pic) in enumerate(zip(RoomList, PersonInCharge)):
             print(f"[+] Creating Room {i}")
             name = roomdat["name"]
             location = roomdat["location"]
             room_type = roomdat["room_type"]
             information = roomdat["information"]
+            list_image_file = []
+            for j in range(5):
+                name_image_file=f"room_image_{random.randint(0, 44)}.jpeg"
+                image_file = Room_Image_File(name=name_image_file)
+                list_image_file.append(image_file)
             pic_name = pic["name"]
             pic_number = pic["number"]
             list_person_in_charge = []
@@ -102,15 +107,16 @@ def create_mockData(app):
             room = Room(name=name, location=location,
                         room_type=room_type, information=information,
                         capacity=random.randint(100, 150), price=random.randint(100000, 300000),
-                        person_in_charge=list_person_in_charge)
+                        person_in_charge=list_person_in_charge,image_file=list_image_file)
+            room_id_list.append(room.id)
             db.session.add(room)
             db.session.commit()
 
-        for i in range(1, len(RoomList) + 1):
+        for i in range(len(RoomList)):
             print(f"[+] Booking room {i}")
             for event in EventList:
                 user = User.query.filter_by(id=random.randint(2, 149)).first()
-                room = Room.query.filter_by(id=i).first()
+                room = Room.query.filter_by(id=room_id_list[i]).first()
                 daterand = datetime.strptime(random_date(
                     "2021/1/1", "2021/12/31", random.random()),
                     "%Y/%m/%d").date()
@@ -127,13 +133,50 @@ def create_mockData(app):
                 db.session.add(booked)
                 db.session.commit()
 
-        print(f"[+] To login as admin, use the following credential")
-        print(f"    [>] email = admin@gmail.com")
-        print(f"    [>] password = Admin")
+        if(create_admin):
+            print(f"[+] To login as admin, use the following credential")
+            print(f"    [>] email = admin@gmail.com")
+            print(f"    [>] password = Admin")
+
+
+def main(argv):
+    app = create_app()
+    mode = ""
+    helpoutput = """
+USAGE:
+-d              Use in development server (DON'T USE IT IN PRODUCTION SERVER)
+-p              Create database tailored to production server
+"""
+    error_message = "ERROR: use -h to see help"
+    try:
+        opts, args = getopt.getopt(
+            argv, "hdp", ["dev", "prod"])
+    except getopt.GetoptError:
+        print(error_message)
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print(helpoutput)
+            sys.exit()
+        elif opt in ("-d", "--dev"):
+            mode = "dev"
+        elif opt in ("-p", "--prod"):
+            mode = "prod"
+
+
+    if(mode == "dev"):
+        drop_everything(app)
+        create_database(app)
+        create_mockData(app, create_admin=True)
+    elif(mode == "prod"):
+        drop_everything(app)
+        create_database(app)
+        create_mockData(app,create_admin=False)
+    else:
+        print(error_message)
 
 
 if __name__ == "__main__":
-    app = create_app()
-    drop_everything(app)
-    create_database(app)
-    create_mockData(app)
+    main(sys.argv[1:])
+    
+    

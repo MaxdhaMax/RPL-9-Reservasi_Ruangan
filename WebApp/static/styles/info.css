@@ -177,6 +177,31 @@ body {
     margin-left: 30px;
     margin-right: 5px;
     border-radius: 15px;
+    object-fit: cover;
+  }
+
+  .container-isi .isi-utama .ket-lokasi .carousel {
+    width: 100%;
+    height: 50%;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 10%;
+  }
+  
+  .container-isi .isi-utama .ket-lokasi .carousel .carousel-inner {
+    width: 100%;
+  }
+
+  .container-isi .isi-utama .ket-lokasi .carousel img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-isi .isi-utama .ket-lokasi .carousel img:hover {
+    cursor: pointer;
   }
   
   .container-isi .isi-utama .ket-lokasi .gambar-pinggir {
