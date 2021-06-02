@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <title>Success-{{booked.id}}</title>
+    <link rel="shortcut icon" type="image/jpg" href="{{url_for('static',filename="images/RoomBook_Logo.png")}}"/>
+  </head>
+    <style>
+      body {
+        text-align: center;
+        padding: 40px 0;
+        background: #376e37;
+      }
+        h1 {
+          color: white;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: whitesmoke;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: white;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        background: #4a934a;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+    </style>
+    <body>
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #5cb85c; margin:0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+        <h1>Booked</h1> 
+        <p>There is a booking for that id<br/> by the name of {{booked.name}}</p>
+      </div>
+    </body>
+</html>

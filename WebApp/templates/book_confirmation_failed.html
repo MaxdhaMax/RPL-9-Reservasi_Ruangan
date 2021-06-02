@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <title>Failed-{{booked.id}}</title>
+    <link rel="shortcut icon" type="image/jpg" href="{{url_for('static',filename="images/RoomBook_Logo.png")}}"/>
+  </head>
+    <style>
+      body {
+        text-align: center;
+        padding: 40px 0;
+        background: #82322f;
+      }
+        h1 {
+          color: white;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: whitesmoke;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      span {
+        color: white;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        background: #ae423f;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+    </style>
+    <body>
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #d9534f; margin:0 auto;">
+        <span class="checkmark">☓</span>
+      </div>
+        <h1>Failed</h1> 
+        <p>Failed to identify that ID <br/> Please check your QR code</p>
+      </div>
+    </body>
+</html>

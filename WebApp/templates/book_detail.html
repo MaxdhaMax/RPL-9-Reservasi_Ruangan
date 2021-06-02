@@ -147,7 +147,8 @@
                         </tr>
                     </tbody>
                 </table>
-            </div class="mb-4">
+            </div>
+            <div class="mb-4">
                 <h4 class="mb-3">Event Information</h4>
                 <table class="table table-striped table-dark">
                     <tbody>
@@ -161,6 +162,12 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="mb-4">
+                <h4 class="mb-3">QR Code</h4>
+                <p>Show this QR code to validate that you've book this room</p>
+                <img src="{{url_for('static',filename="images/" + image_name)}}" style="widht:500px;height:500px; object-fit:contain;">
+            </div>
             <div class="mt-5 p-3 d-flex justify-content-end me-4">
                 <button class="btn btn-md btn-danger me-4" data-bs-toggle="modal" data-bs-target="#CancelModal">Cancel</button>
             </div>

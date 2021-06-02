@@ -1,12 +1,12 @@
-from os import abort
-from flask import Blueprint, render_template, url_for, flash, redirect, request
+import os
+from flask import Blueprint, render_template, url_for, flash, redirect, request, current_app
 from flask_login import login_user, current_user, logout_user, login_required
 from WebApp import db, bcrypt
 from WebApp.model import Booked, User
 from WebApp.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                 RequestResetForm, ResetPasswordForm)
-from WebApp.users.utils import save_picture, send_reset_email
-from datetime import timedelta,datetime 
+from WebApp.users.utils import save_picture, send_reset_email, generate_book_qr, validate_book
+from datetime import timedelta, datetime
 
 users = Blueprint('users', __name__)
 
@@ -61,12 +61,15 @@ def history():
     pending_trans = [t for t in trans if t.status == "pending"]
     for t in pending_trans:
         t.formatted_price = f'Rp {t.price:,}'.replace(",", ".") + ',00'
-        t.expire = (t.time + timedelta(hours=6)).strftime("%d/%m/%Y, %H:%M:%S") + " WIB"
+        t.expire = (t.time + timedelta(hours=6)
+                    ).strftime("%d/%m/%Y, %H:%M:%S") + " WIB"
     print(pending_trans)
     booked = user.book_info
-    booked_and_payed = [o for o in booked if o.transaction.status == "capture" or o.transaction.status== "settlement"]
+    booked_and_payed = [o for o in booked if o.transaction.status ==
+                        "capture" or o.transaction.status == "settlement"]
     booked_and_payed.sort(key=lambda x: x.date, reverse=True)
     return render_template("history.html", booked=booked_and_payed, pending_trans=pending_trans)
+
 
 @users.route("/history/<string:book_id>")
 @login_required
@@ -74,10 +77,25 @@ def book_detail(book_id):
     user = current_user
     book_info = Booked.query.filter_by(id=book_id).first_or_404()
     if book_info.booked_by != current_user:
-        abort(403)
+        os.abort(403)
+    image_name = f"qr_{book_id}.png"
+    image_path = os.path.join(
+        current_app.root_path, "static", "images", image_name)
+    if not os.path.exists(image_path):
+        generate_book_qr(image_path, book_id)
     date = book_info.date
     room = book_info.room_booked
-    return render_template("book_detail.html", book_info=book_info, room=room, date=date)
+    return render_template("book_detail.html", book_info=book_info, room=room, date=date, image_name=image_name)
+
+
+@users.route("/history/<string:book_id>/<string:token>")
+def book_detail_validation(book_id, token):
+    booked = Booked.query.filter_by(id=book_id).first_or_404()
+    if(validate_book(book_id, token)):
+        return render_template("book_confirmation_success.html", booked=booked)
+    else:
+        return render_template("book_confirmation_failed.html", booked=booked)
+
 
 @users.route("/history/<string:book_id>/cancel")
 @login_required
@@ -85,7 +103,7 @@ def book_detail_cancel(book_id):
     user = current_user
     book_info = Booked.query.filter_by(id=book_id).first_or_404()
     if book_info.booked_by != current_user:
-        abort(403)
+        os.abort(403)
     try:
         db.session.delete(book_info)
         db.session.commit()
@@ -93,6 +111,7 @@ def book_detail_cancel(book_id):
         pass
     flash(f"Your booking has been canceled", "info")
     return redirect(url_for('users.history'))
+
 
 @users.route("/account", methods=["GET", "POST"])
 @login_required
@@ -126,9 +145,9 @@ def reset_request():
             pass
         else:
             send_reset_email(user)
-        flash('If an email is exists with that email a recovery code will be sent', 'info')
+        flash('Your reset password request has been sent to your email', 'success')
         return redirect(url_for('users.login'))
-    return render_template('reset_request.html', title="Reset Password", form=form)
+    return render_template('forgot_password.html', form=form)
 
 
 @users.route("/reset_password/<token>", methods=["GET", "POST"])
@@ -147,4 +166,4 @@ def reset_token(token):
         db.session.commit()
         flash("Your password has been updated! You are now able to login!", "success")
         return redirect(url_for("users.login"))
-    return render_template('reset_token.html', title="Reset Password", form=form)
+    return render_template('reset_password.html', form=form, user=user)

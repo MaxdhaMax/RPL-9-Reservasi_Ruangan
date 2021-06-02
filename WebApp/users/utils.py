@@ -1,10 +1,13 @@
+from enum import Flag
 import os
 import secrets
 from PIL import Image
-from flask import url_for, current_app
+from flask import url_for, current_app, request
 from flask_mail import Message
 from flask_login import current_user
 from WebApp import mail
+import qrcode
+from itsdangerous import JSONWebSignatureSerializer as Serializer
 
 
 def save_picture(form_picture):
@@ -25,8 +28,35 @@ def save_picture(form_picture):
     return picture_filename
 
 
+def generate_book_qr(image_path, book_id):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=10,
+        border=4,
+    )
+    s = Serializer(current_app.config['SECRET_KEY'])
+    qr.add_data(url_for('users.book_detail_validation', book_id=book_id,
+                token=s.dumps({'book_id': book_id}).decode('utf-8'), _external=True))
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white").convert('RGB')
+    img.save(image_path)
+
+
+def validate_book(book_id, token):
+    s = Serializer(current_app.config['SECRET_KEY'])
+    try:
+        book_id_token = s.loads(token)['book_id']
+    except:
+        return False
+    if(book_id == book_id_token):
+        return True
+    else:
+        return False
+
+
 def send_reset_email(user):
-    token = user.getlogin_reset_token()
+    token = user.get_reset_token()
     msg = Message('Password Reset Request',
                   sender='noreply@apps.ipb.ac.id', recipients=[user.email])
     msg.body = f'''To reset your password, click the following link:
