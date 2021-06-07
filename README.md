@@ -30,6 +30,22 @@ https://roombook.pythonanywhere.com/
 * Mempermudah dalam reservasi ruangan yang tersedia di lingkup kampus IPB.
 * Mempermudah mahasiswa dalam mencari informasi tentang ruangan yang terletak di IPB
 
+# **Spesifikasi teknis lingkungan pengembangan**
+**1. Software**
+* **Framework:** Bootstrap, React, dan Flask
+* **Database:** MySQL
+* **Server:** Apache
+* **TextEditor/IDE:** Visual Studio Code atau SublimeText3
+
+**2. Hardware**
+* **Ram :** 4gb
+* **Prosesor :** 2.5GHz
+* **Graphiccard :** NvidiaGeForceGT930MX2GB
+
+**3. Tech Stack**
+* **Version Control and Collaboration Platform :** Github,Trello
+* **Teknologi :** CSS, HTML, JavaScript, dan Python
+
 ## How to Run
 1. Download dan install [python](https://www.python.org/downloads/)
 2. Install pip, ini [tutorialnya](https://www.liquidweb.com/kb/install-pip-windows/)
