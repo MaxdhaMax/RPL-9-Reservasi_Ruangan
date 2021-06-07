@@ -1,16 +1,34 @@
 # RPL-9-Reservasi_Ruangan
 
-Kelompok 9
--------------
-| NIM | Nama  |
-| :-----: | :-: |
-| G64190056  | Jevon Sanoturia |
-| G64190057	 | Muammar Naufal Pramudya |	
-| G64190073	| Muhammad Dafa Athaullah |
-|G64190105 |	Maxdha Maxiwinata |
+# **RoomBook**
+> RoomBook adalah sebuah website reservasi ruangan di IPB. Situs ini dapat membantu civitas IPB dalam mencari informasi ruangan serta memberikan layanan pemesanan ruangan yang tersentralisasi.
 
-## Website
+* **Link Aplikasi RoomBook**
+
 https://roombook.pythonanywhere.com/
+
+# **Laporan Akhir Projek**
+* KOM 331 | Rekayasa Perangkat Lunak | P2
+* Kelompok 9
+
+# **Dibimbing Oleh :**
+* 
+* 
+
+# **Tim Pengembang RoomBook**
+| Nama | NIM | Role |
+| ---- | --- | ---- |
+| Jevon Sanoturia | G64190056 | UI/UX Reseacher |
+| Muammar Naufal Pramudya | G64190057 | Front-end Developer |
+| Muhammad Dafa Athaullah | G64190073 | Back-end Developer |
+| Maxdha Maxiwinata | G64190105 | Front-end Developer |
+
+# **Latar Belakang**
+> Institut Pertanian Bogor memiliki banyak organisasi dan UKM untuk menjadi kegiatan ekstrakurikuler mahasiswa di luar pembelajaran biasa. Organisasi dan UKM ini seringkali menggelar acara di lingkungan kampus. Oleh karena itu, reservasi ruangan menjadi hal yang dibutuhkan. Sayangnya, reservasi ruangan di IPB masih memiliki banyak masalah, kurangnya akses informasi tentang ruangan yang bisa direservasi, tata cara dan birokrasi reservasi yang tidak jelas, harga yang kurang transparan, dan penanggung jawab ruangan yang susah dihubungi menjadi hal-hal yang mempersulit mahasiswa untuk menggunakan ruangan yang ada di IPB, terutama untuk mahasiswa baru yang belum memiliki banyak pengalaman. Solusi dari masalah ini adalah sentralisasi informasi dan pemesanan reservasi ruangan, penerapan dari solusi ini adalah dengan dibuatnya ​web application khusus untuk mencari informasi atau reservasi ruangan yang ada di IPB
+
+# **Tujuan**
+* Mempermudah dalam reservasi ruangan yang tersedia di lingkup kampus IPB.
+* Mempermudah mahasiswa dalam mencari informasi tentang ruangan yang terletak di IPB
 
 ## How to Run
 1. Download dan install [python](https://www.python.org/downloads/)
