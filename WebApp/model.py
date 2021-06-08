@@ -8,6 +8,7 @@ from flask import current_app
 from uuid import uuid4
 from random import randint
 
+
 @loginManager.user_loader
 def loadUser(user_id):
     return User.query.get(int(user_id))
@@ -29,6 +30,7 @@ class Transaction(db.Model):
     def __repr__(self):
         return f"Transaction('{self.id}', '{self.payment_type}', '{self.time}', '{self.status}')"
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
 
@@ -38,12 +40,6 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False,
                            default="default.png")
     password = db.Column(db.String(60), nullable=False)
-    mahasiswa = db.relationship(
-        "Mahasiswa", backref="usr", lazy=True)
-    dosen = db.relationship(
-        "Dosen", backref="usr", lazy=True)
-    staff = db.relationship(
-        "Staff", backref="usr", lazy=True)
     transaction = db.relationship("Transaction", backref="user", lazy=True)
 
     def get_reset_token(self, expire_sec=1800):
@@ -63,41 +59,6 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 
-class Mahasiswa(User):
-    id = db.Column("id", db.Integer, db.ForeignKey(User.id), primary_key=True)
-    nim = db.Column(db.String(12), nullable=False)
-    nama = db.Column(db.String(30), nullable=False)
-    departemen = db.Column(db.String(30), nullable=False)
-    fakultas = db.Column(db.String(30), nullable=False)
-    angkatan = db.Column(db.Integer, nullable=False)
-
-
-class Dosen(User):
-    id = db.Column("id", db.Integer, db.ForeignKey(User.id), primary_key=True)
-    nik = db.Column(db.String(12), nullable=False)
-    nama = db.Column(db.String(30), nullable=False)
-    departemen = db.Column(db.String(30), nullable=False)
-    fakultas = db.Column(db.String(30), nullable=False)
-
-
-class Staff(User):
-    id = db.Column("id", db.Integer, db.ForeignKey(User.id), primary_key=True)
-    nik = db.Column(db.String(12), nullable=False)
-    nama = db.Column(db.String(30), nullable=False)
-
-
-class Post(db.Model):
-    id = db.Column("id", db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    datePosted = db.Column(db.DateTime, nullable=False,
-                           default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    def __repr__(self):
-        return f"Post('{self.title}', '{self.datePosted}')"
-
-
 class Room(db.Model):
     __tablename__ = 'room'
     __searchable__ = ['name', 'location', 'room_type']
@@ -110,10 +71,11 @@ class Room(db.Model):
     information = db.Column(db.Text, nullable=False)
     person_in_charge = db.relationship(
         "Person_In_Charge", backref="room", lazy="select")
-    image_file = db.relationship("Room_Image_File",backref="room",lazy="select")
+    image_file = db.relationship(
+        "Room_Image_File", backref="room", lazy="select")
     price = db.Column(db.Integer, nullable=False)
 
-    def __init__(self,name,location,room_type,capacity,information,person_in_charge,image_file,price):
+    def __init__(self, name, location, room_type, capacity, information, person_in_charge, image_file, price):
         self.name = name
         self.location = location
         self.room_type = room_type
@@ -127,10 +89,12 @@ class Room(db.Model):
     def __repr__(self):
         return f"Room('{self.name}', '{self.location}', '{self.room_type}')"
 
+
 class Room_Image_File(db.Model):
-    id=db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     room_id = db.Column(db.String(5), db.ForeignKey('room.id'), nullable=False)
+
 
 class Person_In_Charge(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
@@ -157,7 +121,7 @@ class Booked(db.Model):
     room_booked = db.relationship("Room", backref="book_info", lazy="select")
     transaction_id = db.Column(db.String(19), db.ForeignKey('transaction.id'))
 
-    def __init__(self,date,event,organization,name,email,phone,booked_by,room_booked, transaction_id=None):
+    def __init__(self, date, event, organization, name, email, phone, booked_by, room_booked, transaction_id=None):
         self.date = date
         self.event = event
         self.organization = organization

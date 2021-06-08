@@ -32,13 +32,11 @@ def create_app(config_class=Config):
     CORS(app, resources={r"/*": {"origins": "*"}})
 
     from WebApp.users.routes import users
-    from WebApp.posts.routes import posts
     from WebApp.main.routes import main
     from WebApp.rooms.routes import rooms
     from WebApp.errors.handlers import errors
 
     app.register_blueprint(users)
-    app.register_blueprint(posts)
     app.register_blueprint(main)
     app.register_blueprint(rooms)
     app.register_blueprint(errors)
