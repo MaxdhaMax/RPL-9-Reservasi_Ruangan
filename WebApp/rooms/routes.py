@@ -18,7 +18,7 @@ rooms = Blueprint('rooms', __name__)
 @login_required
 def room(id):
     room = Room.query.filter_by(id=id).first_or_404()
-    room.information = Markup(room.information.replace("\n", "<br>"))
+    information = Markup(room.information.replace("\n", "<br>"))
     person_in_charge = room.person_in_charge[0]
     booked_rooms = room.book_info
     booked_date = [r.date.strftime("%Y/%m/%d") for r in booked_rooms]
@@ -30,7 +30,7 @@ def room(id):
             return redirect(url_for('rooms.room_book', id=id))
         except Error as e:
             print(e)
-    return render_template('info_ruangan.html', booked_date=booked_date, current_user=current_user, room=room, pic=person_in_charge)
+    return render_template('info_ruangan.html', booked_date=booked_date, current_user=current_user, room=room, pic=person_in_charge, information=information)
 
 
 @rooms.route("/room/<string:id>/edit", methods=["GET", "POST"])
