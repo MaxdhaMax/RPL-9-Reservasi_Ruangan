@@ -1,12 +1,11 @@
 from copy import Error
-from flask import Blueprint, render_template, url_for, flash, jsonify, redirect, session, abort
-from flask.globals import request
+from flask import Blueprint, render_template, url_for, flash, jsonify, redirect, session, abort, Markup, request
 from flask_login import login_required, current_user
-from WebApp.model import User, Room, Transaction, Booked
-from WebApp.rooms.forms import BookForm
+from WebApp.model import User, Room, Transaction, Booked, Room_Image_File
+from WebApp.rooms.forms import BookForm, EditRoomForm
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime, date, timedelta
-from WebApp.rooms.utils import BookedSchema, PaymentParameters
+from WebApp.rooms.utils import BookedSchema, PaymentParameters, SavePictures
 from WebApp.myscheduler import CheckTransactionStatus
 from WebApp import db
 import midtransclient
@@ -19,6 +18,7 @@ rooms = Blueprint('rooms', __name__)
 @login_required
 def room(id):
     room = Room.query.filter_by(id=id).first_or_404()
+    room.information = Markup(room.information.replace("\n", "<br>"))
     person_in_charge = room.person_in_charge[0]
     booked_rooms = room.book_info
     booked_date = [r.date.strftime("%Y/%m/%d") for r in booked_rooms]
@@ -31,6 +31,44 @@ def room(id):
         except Error as e:
             print(e)
     return render_template('info_ruangan.html', booked_date=booked_date, current_user=current_user, room=room, pic=person_in_charge)
+
+
+@rooms.route("/room/<string:id>/edit", methods=["GET", "POST"])
+@login_required
+def room_edit(id):
+    room = Room.query.filter_by(id=id).first_or_404()
+    person_in_charge = room.person_in_charge[0]
+    form = EditRoomForm()
+    if(current_user.id != person_in_charge.id):
+        abort(403)
+    if(form.validate_on_submit()):
+        print("masuk")
+        room.name = form.name.data
+        room.location = form.location.data
+        room.room_type = form.room_type.data
+        room.capacity = form.capacity.data
+        room.information = form.information.data
+        if(form.picture.data):
+            pics = request.files.getlist(form.picture.name)
+            pictures_name = SavePictures(pics, id)
+            for im in room.image_file:
+                db.session.delete(im)
+            list_image_file = []
+            for p_name in pictures_name:
+                image_file = Room_Image_File(name=p_name)
+                list_image_file.append(image_file)
+            room.image_file = list_image_file
+        db.session.commit()
+        flash("Informasi ruangan telah diedit", category="success")
+        return redirect(url_for('rooms.room', id=id))
+    elif(request.method == 'GET'):
+        print("masuk")
+        form.name.data = room.name
+        form.location.data = room.location
+        form.room_type.data = room.room_type
+        form.capacity.data = room.capacity
+        form.information.data = room.information
+    return render_template('info_ruangan_edit.html', current_user=current_user, room=room, pic=person_in_charge, form=form)
 
 
 @rooms.route("/room/<string:id>/book", methods=["GET", "POST"])

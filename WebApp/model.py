@@ -36,11 +36,12 @@ class User(db.Model, UserMixin):
 
     id = db.Column("id", db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(256), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False,
                            default="default.png")
     password = db.Column(db.String(60), nullable=False)
     transaction = db.relationship("Transaction", backref="user", lazy=True)
+    active = db.Column(db.Boolean, nullable=False, default=False)
 
     def get_reset_token(self, expire_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expire_sec)
@@ -96,8 +97,9 @@ class Room_Image_File(db.Model):
     room_id = db.Column(db.String(5), db.ForeignKey('room.id'), nullable=False)
 
 
-class Person_In_Charge(db.Model):
-    id = db.Column("id", db.Integer, primary_key=True)
+class Person_In_Charge(User):
+    id = db.Column("id", db.Integer, db.ForeignKey(
+        'user.id'), primary_key=True)
     name = db.Column(db.String(30), nullable=False)
     number = db.Column(db.String(20), nullable=False)
     room_id = db.Column(db.String(5), db.ForeignKey('room.id'), nullable=False)
@@ -115,8 +117,8 @@ class Booked(db.Model):
     event = db.Column(db.String(50), nullable=False)
     organization = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
-    phone = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(256), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
     booked_by = db.relationship("User", backref="book_info", lazy="select")
     room_booked = db.relationship("Room", backref="book_info", lazy="select")
     transaction_id = db.Column(db.String(19), db.ForeignKey('transaction.id'))

@@ -1,11 +1,11 @@
 import os
-from flask import Blueprint, render_template, url_for, flash, redirect, request, current_app
+from flask import Blueprint, render_template, url_for, flash, redirect, request, current_app, Markup
 from flask_login import login_user, current_user, logout_user, login_required
 from WebApp import db, bcrypt
 from WebApp.model import Booked, User
 from WebApp.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                 RequestResetForm, ResetPasswordForm)
-from WebApp.users.utils import save_picture, send_reset_email, generate_book_qr, validate_book
+from WebApp.users.utils import save_picture, send_activate_email, send_reset_email, generate_book_qr, validate_book
 from datetime import timedelta, datetime
 
 users = Blueprint('users', __name__)
@@ -18,12 +18,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if user and bcrypt.check_password_hash(user.password, form.password.data) and user.active == True:
             login_user(user, remember=form.remember.data)
             nextPage = request.args.get('next')
             flash(
                 f"Login successful, welcome {user.username}!", category='success')
             return redirect(nextPage) if nextPage else redirect(url_for('main.home'))
+        elif user and bcrypt.check_password_hash(user.password, form.password.data) and user.active == False:
+            flash(Markup(
+                f"Please activate your account, we have sent an activation code to your email,<a href=\"{url_for('users.sent_activate_token', username=user.username)}\" class=\"ms-1 me-1\">click here</a>to send them again"), "danger")
         else:
             flash("Login Unsuccessful, please check your email and password", "danger")
     return render_template('login.html', title='Login', form=form)
@@ -38,12 +41,36 @@ def register():
         hashedPassword = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
         user = User(username=form.username.data,
-                    email=form.email.data, password=hashedPassword)
+                    email=form.email.data, password=hashedPassword, active=False)
         db.session.add(user)
         db.session.commit()
-        flash("Your account has been created! You are now able to login!", "success")
+        send_activate_email(user)
+        flash("Please activate your account, an activation link has been sent to your email", "info")
         return redirect(url_for("users.login"))
     return render_template("register.html", title="Register", form=form)
+
+
+@users.route("/register/sent-activation-link/<string:username>")
+def sent_activate_token(username):
+    user = User.query.filter_by(username=username).first()
+    if(user):
+        send_activate_email(user)
+        flash("An activation link has been sent to your email", "info")
+        return redirect(url_for('users.login'))
+    else:
+        os.abort(403)
+
+
+@users.route("/register/<string:token>")
+def activate_account(token):
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash("That is an invalid or expired token", 'warning')
+        return redirect(url_for('users.register'))
+    user.active = True
+    db.session.commit()
+    flash("Your account has been activated, now you're able to login", "success")
+    return redirect(url_for('users.login'))
 
 
 @users.route("/logout")

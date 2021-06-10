@@ -1,6 +1,11 @@
 from datetime import date, timedelta
 from WebApp import ma
 from WebApp.model import Transaction
+from flask import current_app
+from flask_login import current_user
+import os
+from PIL import Image
+import secrets
 
 
 class BookedSchema(ma.Schema):
@@ -102,3 +107,17 @@ def PaymentParameters(payment: str, name: str, email: str, phone: str, price: in
             }
         }
     return param
+
+
+def SavePictures(form_pictures, room_id):
+    picture_filenames = []
+    for picture in form_pictures:
+        random_hex = secrets.token_hex(2)
+        _, file_ext = os.path.splitext(picture.filename)
+        picture_filename = room_id + "-" + random_hex + file_ext
+        picture_filenames.append(picture_filename)
+        picture_path = os.path.join(
+            current_app.root_path, 'static', 'images', picture_filename)
+        i = Image.open(picture)
+        i.save(picture_path)
+    return picture_filenames

@@ -65,3 +65,15 @@ def send_reset_email(user):
 If you did not make this request then simply ignore this email and no change will be made.
 '''
     mail.send(msg)
+
+
+def send_activate_email(user):
+    token = user.get_reset_token()
+    msg = Message('Activate Your Account',
+                  sender='noreply@apps.ipb.ac.id', recipients=[user.email])
+    msg.body = f'''To activate your account, click the following link:
+{url_for('users.activate_account',token=token, _external = True)}
+
+If you did not make this request then simply ignore this email and no change will be made.
+'''
+    mail.send(msg)

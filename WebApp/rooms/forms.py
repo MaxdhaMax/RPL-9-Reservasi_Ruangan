@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, IntegerField, TextAreaField, MultipleFileField
+from flask_wtf.file import FileAllowed
 from wtforms.fields.core import SelectField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
@@ -62,3 +63,14 @@ class BookForm(FlaskForm):
         if(len(number.data) < 10):
             raise ValidationError(
                 'Please enter a valid number')
+
+
+class EditRoomForm(FlaskForm):
+    name = StringField("Room Name", validators=[DataRequired()])
+    location = StringField("Room Location", validators=[DataRequired()])
+    room_type = StringField("Room Type", validators=[DataRequired()])
+    capacity = IntegerField("Room Capacity", validators=[DataRequired()])
+    information = TextAreaField("Room Information")
+    picture = MultipleFileField('Upload room pictures', validators=[
+        FileAllowed(['jpg', 'png', 'jpeg']), Optional()])
+    submit = SubmitField("Edit Informasi")

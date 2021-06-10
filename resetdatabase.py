@@ -68,7 +68,7 @@ def create_mockData(app, create_admin=True):
             hashedPassword = bcrypt.generate_password_hash(
                 "Admin").decode('utf-8')
             user = User(username=username,
-                        email=email, password=hashedPassword)
+                        email=email, password=hashedPassword, active=True)
             db.session.add(user)
             db.session.commit()
             print(f"[+] Generate admin user")
@@ -82,7 +82,7 @@ def create_mockData(app, create_admin=True):
             password = user_data["password"]
             email = user_data["email"]
             user = User(username=username,
-                        email=email, password=password)
+                        email=email, password=password, active=True)
             db.session.add(user)
             db.session.commit()
 
@@ -100,9 +100,12 @@ def create_mockData(app, create_admin=True):
                 list_image_file.append(image_file)
             pic_name = pic["name"]
             pic_number = pic["number"]
+            pic_username = pic["username"]
+            pic_email = pic["email"]
+            pic_password = pic["password"]
             list_person_in_charge = []
             person_in_charge = Person_In_Charge(
-                name=pic_name, number=pic_number)
+                name=pic_name, number=pic_number, username=pic_username, email=pic_email, password=pic_password, active=True)
             list_person_in_charge.append(person_in_charge)
             room = Room(name=name, location=location,
                         room_type=room_type, information=information,
@@ -110,6 +113,54 @@ def create_mockData(app, create_admin=True):
                         person_in_charge=list_person_in_charge, image_file=list_image_file)
             room_id_list.append(room.id)
             db.session.add(room)
+            db.session.commit()
+
+        # Membuat room untuk keperluan demo
+        print(f"[+] Creating mock data for demo")
+        fmipa_auditorium_information = """FMIPA menyediakan fasilitas auditorium untuk menunjang penyelenggaraan kegiatan bagi civitas IPB dan umum. Auditorium FMIPA berlokasi di Jalan Agatis Kampus Dramaga IPB.
+
+Fasilitas Standar: 
+1. LCD Projector Screen  dan Sound System
+2. Air Conditioner
+3. 250 Kursi Standar
+
+Auditorium FMIPA Cocok digunakan untuk acara besar yang membutuhkan ruangan yang besar dengan budget yang minimal.
+"""
+        list_image_file_auditorium_fmipa = []
+        for j in range(5):
+            name_image_file = f"au_fmipa_{j+1}.jpg"
+            image_file = Room_Image_File(name=name_image_file)
+            list_image_file_auditorium_fmipa.append(image_file)
+        list_person_in_charge_audit_fmipa = []
+        hashedPassword = bcrypt.generate_password_hash(
+            "RPLkelompok9!").decode('utf-8')
+        person_in_charge_audit_fmipa = Person_In_Charge(
+            name="Bambang Satriya", number="+6281334623784", username="roomAdmin", email="roomadmin@gmail.com", password=hashedPassword)
+        list_person_in_charge_audit_fmipa.append(person_in_charge_audit_fmipa)
+        room = Room(name="Auditorium FMIPA", location="FMIPA",
+                    room_type="Auditorium", information=fmipa_auditorium_information,
+                    capacity=150, price=100000,
+                    person_in_charge=list_person_in_charge_audit_fmipa, image_file=list_image_file_auditorium_fmipa)
+        db.session.add(room)
+        db.session.commit()
+
+        print(f"[+] Booking demo room")
+        for event in EventList:
+            user = User.query.filter_by(id=random.randint(2, 149)).first()
+            daterand = datetime.strptime(random_date(
+                "2021/1/1", "2021/12/31", random.random()),
+                "%Y/%m/%d").date()
+            isBooked = Booked.query.filter_by(
+                room_booked=room, date=daterand).first()
+            if(isBooked):
+                continue
+            booked = Booked(
+                booked_by=user, room_booked=room,
+                date=daterand, event=event["event"],
+                organization=event["organization"],
+                phone=event['phone'], email=event['email'],
+                name=event["name"])
+            db.session.add(booked)
             db.session.commit()
 
         for i in range(len(RoomList)):
