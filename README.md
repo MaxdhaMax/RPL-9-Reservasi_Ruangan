@@ -12,8 +12,9 @@ https://roombook.pythonanywhere.com/
 * Kelompok 9
 
 # **Dibimbing Oleh :**
-* 
-* 
+* Ali Naufal Ammarullah
+* Levina S
+* Muhammad Fauzan Ramadhan
 
 # **Tim Pengembang RoomBook**
 | Nama | NIM | Role |
@@ -45,6 +46,13 @@ https://roombook.pythonanywhere.com/
 **3. Tech Stack**
 * **Version Control and Collaboration Platform :** Github,Trello
 * **Teknologi :** CSS, HTML, JavaScript, dan Python
+
+# **Hasil dan pembahasan**
+### **Use Case Diagram**
+![](https://imgur.com/YbKzxmr.png)
+
+### **Activity Diagram**
+![](https://imgur.com/ONKDYIv.png)
 
 ## How to Run
 1. Download dan install [python](https://www.python.org/downloads/)
