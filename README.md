@@ -54,6 +54,16 @@ https://roombook.pythonanywhere.com/
 ### **Activity Diagram**
 ![](https://imgur.com/ONKDYIv.png)
 
+### **Class Diagram**
+![](https://i.imgur.com/R9SddAY.png)
+
+### **Entity Relationship Diagram**
+![](https://i.imgur.com/U5XNoRo.png)
+
+### **Architecture Diagram**
+![](https://i.imgur.com/yliT3k5.png)
+
+
 ## How to Run
 1. Download dan install [python](https://www.python.org/downloads/)
 2. Install pip, ini [tutorialnya](https://www.liquidweb.com/kb/install-pip-windows/)
