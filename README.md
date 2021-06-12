@@ -63,6 +63,28 @@ https://roombook.pythonanywhere.com/
 ### **Architecture Diagram**
 ![](https://i.imgur.com/yliT3k5.png)
 
+### **Fungsi Utama yang Dikembangkan**
+1. **Pencarian Ruangan**, pengguna dapat menggunakan fitur ini untuk mencari ruangan yang ingin dipesan.
+![](https://i.imgur.com/Ltz5zOm.png)
+
+2. **Informasi Ruangan**, pengguna dapat mengetahui informasi ruangan seperti gambaran mengenai ruangan, lokasi dari ruangan, harga, serta kontak dari penanggung jawab ruangan.
+![](https://i.imgur.com/xOpQAD0.png)
+
+3. **Memilih Tanggal Pemesanan**, pengguna dapat menentukan tanggal kapan ruangan ingin dipesan serta durasi dalam satuan hari. Tak hanya itu pengguna juga dapat mengetahui ketersediaan ruangan.
+![](https://i.imgur.com/jCBcFpL.png)
+
+4. **Informasi Pemesan**, pengguna akan diminta untuk mengisi form, seperti nama pemesan, nama event, nomor telepon,dan email sehingga lebih mudah dihubungi oleh penanggungjawab ruangan. Pengguna juga dapat memilih metode pembayaran.
+![](https://i.imgur.com/Mj3K3EC.png)
+
+5. **Confirmation**, pengguna akan diminta untuk mengkonfirmasi pesanan yang baru saja dibuat. Pengguna juga akan diberi tahu langkah-langkah yang diperlukan untuk pembayaran.
+![](https://i.imgur.com/Kg4Aa9K.png)
+
+
+6. **Waiting Payment**, pengguna dapat melihat status dari pesanan yang telah dibuat.
+![](https://i.imgur.com/DTCBStX.png)
+
+7. **Book History**, pengguna dapat melihat historis pesanan yang pernah dibuat.
+![](https://i.imgur.com/XfESaya.png)
 
 ## How to Run
 1. Download dan install [python](https://www.python.org/downloads/)
