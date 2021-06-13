@@ -13,7 +13,7 @@ from itsdangerous import JSONWebSignatureSerializer as Serializer
 def save_picture(form_picture):
     pref_picture = os.path.join(
         current_app.root_path, "static", "images", current_user.image_file)
-    if os.path.exists(pref_picture) and os.path.basename(pref_picture) != 'default.jpg':
+    if os.path.exists(pref_picture) and os.path.basename(pref_picture) != 'default.png':
         os.remove(pref_picture)
     random_hex = secrets.token_hex(8)
     _, file_ext = os.path.splitext(form_picture.filename)
