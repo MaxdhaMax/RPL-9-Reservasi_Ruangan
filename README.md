@@ -1,22 +1,21 @@
-# RPL-9-Reservasi_Ruangan
-
 # **RoomBook**
-> RoomBook adalah sebuah website reservasi ruangan di IPB. Situs ini dapat membantu civitas IPB dalam mencari informasi ruangan serta memberikan layanan pemesanan ruangan yang tersentralisasi.
+![](https://i.imgur.com/IipwvCl.jpg)
 
+> RoomBook adalah sebuah website reservasi ruangan di IPB. Situs ini dapat membantu civitas IPB dalam mencari informasi ruangan serta memberikan layanan pemesanan ruangan yang tersentralisasi.
 * **Link Aplikasi RoomBook**
 
 https://roombook.pythonanywhere.com/
 
-# **Laporan Akhir Projek**
+## **Laporan Akhir Projek**
 * KOM 331 | Rekayasa Perangkat Lunak | P2
 * Kelompok 9
 
-# **Dibimbing Oleh :**
+## **Dibimbing Oleh :**
 * Ali Naufal Ammarullah
 * Levina S
 * Muhammad Fauzan Ramadhan
 
-# **Tim Pengembang RoomBook**
+## **Tim Pengembang RoomBook**
 | Nama | NIM | Role |
 | ---- | --- | ---- |
 | Jevon Sanoturia | G64190056 | UI/UX Reseacher |
@@ -24,14 +23,25 @@ https://roombook.pythonanywhere.com/
 | Muhammad Dafa Athaullah | G64190073 | Back-end Developer |
 | Maxdha Maxiwinata | G64190105 | Front-end Developer |
 
-# **Latar Belakang**
-> Institut Pertanian Bogor memiliki banyak organisasi dan UKM untuk menjadi kegiatan ekstrakurikuler mahasiswa di luar pembelajaran biasa. Organisasi dan UKM ini seringkali menggelar acara di lingkungan kampus. Oleh karena itu, reservasi ruangan menjadi hal yang dibutuhkan. Sayangnya, reservasi ruangan di IPB masih memiliki banyak masalah, kurangnya akses informasi tentang ruangan yang bisa direservasi, tata cara dan birokrasi reservasi yang tidak jelas, harga yang kurang transparan, dan penanggung jawab ruangan yang susah dihubungi menjadi hal-hal yang mempersulit mahasiswa untuk menggunakan ruangan yang ada di IPB, terutama untuk mahasiswa baru yang belum memiliki banyak pengalaman. Solusi dari masalah ini adalah sentralisasi informasi dan pemesanan reservasi ruangan, penerapan dari solusi ini adalah dengan dibuatnya ​web application khusus untuk mencari informasi atau reservasi ruangan yang ada di IPB
+## **Latar Belakang**
+> Institut Pertanian Bogor memiliki banyak organisasi dan UKM untuk menjadi kegiatan ekstrakurikuler mahasiswa di luar pembelajaran biasa. Organisasi dan UKM ini seringkali menggelar acara di lingkungan kampus. Oleh karena itu, reservasi ruangan menjadi hal yang dibutuhkan. Sayangnya, reservasi ruangan di IPB masih memiliki banyak masalah, kurangnya akses informasi tentang ruangan yang bisa direservasi, tata cara dan birokrasi reservasi yang tidak jelas, harga yang kurang transparan, dan penanggung jawab ruangan yang susah dihubungi menjadi hal-hal yang mempersulit mahasiswa untuk menggunakan ruangan yang ada di IPB, terutama untuk mahasiswa baru yang belum memiliki banyak pengalaman. Solusi dari masalah ini adalah sentralisasi informasi dan pemesanan reservasi ruangan, penerapan dari solusi ini adalah dengan dibuatnya ​web application khusus untuk mencari informasi atau reservasi ruangan yang ada di IPB.
 
-# **Tujuan**
+## **Tujuan**
 * Mempermudah dalam reservasi ruangan yang tersedia di lingkup kampus IPB.
-* Mempermudah mahasiswa dalam mencari informasi tentang ruangan yang terletak di IPB
+* Mempermudah mahasiswa dalam mencari informasi tentang ruangan yang terletak di IPB.
 
-# **Spesifikasi teknis lingkungan pengembangan**
+## **User analysis**
+### **User Stories**
+* Sebagai User , agar dapat memesan ruangan, saya dapat melihat list ruangan yang ada di database
+* Sebagai User, agar dapat mempermudah mencari ruangan, saya dapat mencari ruangan yang saya inginkan dan memfilter ruangan yang saya butuhkan
+* Sebagai User, agar dapat mudah memilih ruangan, saya dapat melihat informasi detail tentang suatu ruangan
+* Sebagai User, agar dapat memesan ruangan, saya dapat melihat jadwal hari yang masih kosong dan belum di booking oleh orang lain
+* Sebagai User, untuk mempermudah pembayaran ruangan yang sudah dipesan, saya bisa memilih cara pembayaran dan mendapat informasi bagaimana cara membayar
+* Sebagai User, untuk mendapatkan informasi dan mengelola akun saya, saya butuh cara agar saya bisa mengubah informasi yang ada di akun saya
+* Sebagai Person In Charge, untuk bisa memperbarui informasi tentang ruangan yang saya tanggung jawabi, saya dapat mengubah informasi ruangan hanya di ruangan yang saya tanggung jawabi
+* Sebagai admin roombook, untuk bisa mengelola database ruangan, saya bisa mengedit semua ruangan dan membuat ruangan baru
+
+## **Spesifikasi teknis lingkungan pengembangan**
 **1. Software**
 * **Framework:** Bootstrap, React, dan Flask
 * **Database:** MySQL
@@ -47,12 +57,16 @@ https://roombook.pythonanywhere.com/
 * **Version Control and Collaboration Platform :** Github,Trello
 * **Teknologi :** CSS, HTML, JavaScript, dan Python
 
-# **Hasil dan pembahasan**
+## **Hasil dan pembahasan**
+
+
 ### **Use Case Diagram**
-![](https://imgur.com/YbKzxmr.png)
+![](https://i.imgur.com/FUwou77.jpg)
+
 
 ### **Activity Diagram**
-![](https://imgur.com/3Mxl0a1.png)
+![](https://i.imgur.com/ai5g0f6.jpg)
+
 
 ### **Class Diagram**
 ![](https://i.imgur.com/R9SddAY.png)
@@ -86,32 +100,78 @@ https://roombook.pythonanywhere.com/
 7. **Book History**, pengguna dapat melihat historis pesanan yang pernah dibuat.
 ![](https://i.imgur.com/XfESaya.png)
 
-## How to Run
-1. Download dan install [python](https://www.python.org/downloads/)
-2. Install pip, ini [tutorialnya](https://www.liquidweb.com/kb/install-pip-windows/)
-3. Clone repository ini
-   - Buka terminal
-   - cd ke directory yang diinginkan
-   - Lakukan command `git clone https://github.com/MaxdhaMax/RPL-9-Reservasi_Ruangan.git RoomBook`
-4. Copy file .env yang diberikan ke folder `WebApp` di `RoomBook\WebApp`
-5. Install requirementnya
-   - `cd RoomBook`
-   - `pip install -r requirements.txt`
-6. Buat databasenya (cukup jalankan ini sekali saja)
-   - `python createdatabase.py`
-7. Semua selesai, tinggal jalankan program
-   - `python run.py`, jika ingin menjalankan programnya lagi, hanya tinggal lakukan command ini lagi
-8. Buka alamat ini di web browser `http://127.0.0.1:5000/`
+### **Fungsi CRUD**
+- User
 
-## Mengedit tampilan website
-Buka file RoomBook yang sudah di clone tadi, lalu masuk ke directory
-```
-...\RoomBook\WebApp\templates
-```
-Itu adalah tempat untuk mengedit html yang ada, untuk dasar template htmlnya adalah `base.html`
+| CRUD | Verfied Use Case |
+| -------- | -------- | 
+| Create     | Membuat akun, membuat booking ruangan, membuat transaksi |
+| Read     | Membaca booking ruangan orang lain, melihat daftar ruangan, melihat daftar sejarah booking, melihat transaksi beserta statusnya |
+| Update     | Mengganti status transaksi dengan cara membayar   |
+| Delete     | Membatalkan booking order, membatalkan transaksi |
 
-Untuk CSS, masuk ke directory:
-```
-...\RoomBook\WebApp\static\styles
-```
+- Person In Charge
 
+| CRUD | Verfied Use Case |
+| -------- | -------- | 
+| Create     | Membuat akun, membuat booking ruangan, membuat transaksi |
+| Read     | Membaca booking ruangan orang lain, melihat daftar ruangan, melihat daftar sejarah booking, melihat transaksi beserta statusnya |
+| Update     | Mengganti status transaksi dengan cara membayar, mengubah informasi ruangan yang ditanggungjawabi   |
+| Delete     | Membatalkan booking order, membatalkan transaksi |
+
+- Admin
+
+| CRUD | Verfied Use Case |
+| -------- | -------- | 
+| Create     | Membuat ruangan baru, membuat akun Person In Charge untuk suatu ruangan |
+| Read     | Membaca daftar ruangan, booking ruangan tersebut, dan daftar transaksi ruangan tersebut |
+| Update     | Mengubah informasi ruangan    |
+| Delete     | Menghapus ruangan |
+
+
+## **Hasil implementasi**
+### **Screenshot sistem**
+**1. Landing Page**
+![](https://i.imgur.com/XvbvwJY.png)
+
+**2. Login Page**
+![](https://i.imgur.com/AtOesHI.png)
+
+**3. Home Page**
+![](https://i.imgur.com/dwRdlBk.jpg)
+
+![](https://i.imgur.com/oR6aRy8.png)
+
+**4. Information Page**
+![](https://i.imgur.com/YKDv8Xi.png)
+
+**5. Reservation Page**
+![](https://i.imgur.com/WjihdXI.png)
+
+**6. Payment Page**
+![](https://i.imgur.com/6WPkmgS.png)
+
+**7. Book History Page**
+![](https://i.imgur.com/ra3wY9F.png)
+
+
+## **Testing (Test cases)**
+### **Positive Cases**
+**1. Forget password benar benar mengirim langsung ke email untuk merubah password**
+
+**2. Bisa dipakai dengan hp dan laptop secara bersamaan**
+
+**3. Register akan mengirim activate account terlebih dahulu ke email**
+
+**4. Update foto profile sudah dapat dilakukan**
+
+
+### **Negative Cases**
+**1. Satu akun gmail bisa dipakai untuk buat banyak akun**
+
+**2. Dalam pemesanan ruangan jika memilih beberapa hari, dan hari ditengahnya sudah di booking orang, masih bisa dipesan**
+
+
+## **Saran untuk pengembangan selanjutnya**
+1. Membuat Mobile app version dari RoomBook
+2. Membuat web RoomBook menjadi responsive 
