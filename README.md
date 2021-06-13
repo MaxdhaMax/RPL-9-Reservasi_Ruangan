@@ -91,6 +91,52 @@ https://roombook.pythonanywhere.com/
 7. **Book History**, pengguna dapat melihat historis pesanan yang pernah dibuat.
 ![](https://i.imgur.com/XfESaya.png)
 
+## **Hasil implementasi**
+### **Screenshot sistem**
+**1. Landing Page**
+![](https://i.imgur.com/XvbvwJY.png)
+
+**2. Login Page**
+![](https://i.imgur.com/AtOesHI.png)
+
+**3. Home Page**
+![](https://i.imgur.com/dwRdlBk.jpg)
+
+![](https://i.imgur.com/oR6aRy8.png)
+
+**4. Information Page**
+![](https://i.imgur.com/YKDv8Xi.png)
+
+**5. Reservation Page**
+![](https://i.imgur.com/WjihdXI.png)
+
+**6. Payment Page**
+![](https://i.imgur.com/6WPkmgS.png)
+
+**7. Book History Page**
+![](https://i.imgur.com/ra3wY9F.png)
+
+
+## **Testing (Test cases)**
+### **Positive Cases**
+**1. Forget password benar benar mengirim langsung ke email untuk merubah password**
+
+**2. Bisa dipakai dengan hp dan laptop secara bersamaan**
+
+**3. Register akan mengirim activate account terlebih dahulu ke email**
+
+**4. Update foto profile sudah dapat dilakukan**
+
+### **Negative Cases**
+**1. Satu akun gmail bisa dipakai untuk buat banyak akun**
+
+**2. Dalam pemesanan ruangan jika memilih beberapa hari, dan hari ditengahnya sudah di booking orang, masih bisa dipesan**
+
+## **Saran untuk pengembangan selanjutnya**
+1. Membuat Mobile app version dari RoomBook
+2. Membuat web RoomBook menjadi responsive 
+
+
 ## How to Run
 1. Download dan install [python](https://www.python.org/downloads/)
 2. Install pip, ini [tutorialnya](https://www.liquidweb.com/kb/install-pip-windows/)
