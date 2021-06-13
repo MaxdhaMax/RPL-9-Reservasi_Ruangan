@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Selec
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from WebApp.model import User
+from WebApp import bcrypt
 import email_validator
 
 
@@ -29,47 +30,6 @@ class RegistrationForm(FlaskForm):
                 'That email is taken, please choose another one.')
 
 
-class RegistrationTypeForm(FlaskForm):
-    choice = ["Mahasiswa", "Dosen", "Staff"]
-    user_type = SelectField("Siapakah Anda", validators=[
-                            DataRequired()], choices=choice)
-    submit = SubmitField("Pilih")
-
-
-class MahasiswaRegistrationForm(FlaskForm):
-    nim = StringField("NIM", validators=[
-        DataRequired(), Length(max=12)])
-    nama = StringField("NIM", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    departemen = StringField("Departemen", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    fakultas = StringField("Fakultas", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    angkatan = IntegerField("Angkatan", validators=[
-        DataRequired()])
-    submit = SubmitField("Pilih")
-
-
-class DosenRegistrationForm(FlaskForm):
-    nik = StringField("NIK", validators=[
-        DataRequired(), Length(max=12)])
-    nama = StringField("NIM", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    departemen = StringField("Departemen", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    fakultas = StringField("Fakultas", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    submit = SubmitField("Pilih")
-
-
-class StaffRegistrationForm(FlaskForm):
-    nik = StringField("NIK", validators=[
-        DataRequired(), Length(max=12)])
-    nama = StringField("NIM", validators=[
-        DataRequired(), Length(min=2, max=30)])
-    submit = SubmitField("Pilih")
-
-
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -81,6 +41,11 @@ class UpdateAccountForm(FlaskForm):
     username = StringField("Username", validators=[
                            DataRequired(), Length(min=2, max=20)])
     email = StringField("Email", validators=[DataRequired(), Email()])
+    oldPassword = PasswordField(
+        'Current Password', validators=[])
+    password = PasswordField('New Password', validators=[])
+    passwordConfirmation = PasswordField(
+        "Confirm New Password", validators=[EqualTo('password')])
     picture = FileField('Update Profile Picture',
                         validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField("Update")

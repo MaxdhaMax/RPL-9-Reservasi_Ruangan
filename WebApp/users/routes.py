@@ -145,11 +145,20 @@ def book_detail_cancel(book_id):
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        print(form.picture.data)
         if form.picture.data:
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
-        current_user.email = form.email.data
+        if form.password.data:
+            if bcrypt.check_password_hash(current_user.password, form.oldPassword.data):
+                pass
+            else:
+                flash("Your current password is incorrect", category="danger")
+                return redirect(url_for('users.account'))
+            hashedPassword = bcrypt.generate_password_hash(
+                form.password.data).decode('utf-8')
+            current_user.password = hashedPassword
         db.session.commit()
         flash("Your account has been updated", category='success')
         return redirect(url_for('users.account'))
@@ -158,7 +167,7 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static', filename='images/' +
                          current_user.image_file)
-    return render_template('account.html', title="Account", image_file=image_file, form=form)
+    return render_template('profil.html', title="Account", image_file=image_file, form=form)
 
 
 @users.route("/reset_password", methods=["GET", "POST"])

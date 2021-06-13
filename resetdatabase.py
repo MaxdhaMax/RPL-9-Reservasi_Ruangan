@@ -135,7 +135,7 @@ Auditorium FMIPA Cocok digunakan untuk acara besar yang membutuhkan ruangan yang
         hashedPassword = bcrypt.generate_password_hash(
             "RPLkelompok9!").decode('utf-8')
         person_in_charge_audit_fmipa = Person_In_Charge(
-            name="Bambang Satriya", number="+6281334623784", username="roomAdmin", email="roomadmin@gmail.com", password=hashedPassword)
+            name="Bambang Satriya", number="+6281334623784", username="roomAdmin", email="roomadmin@gmail.com", password=hashedPassword, active=True)
         list_person_in_charge_audit_fmipa.append(person_in_charge_audit_fmipa)
         room = Room(name="Auditorium FMIPA", location="FMIPA",
                     room_type="Auditorium", information=fmipa_auditorium_information,
