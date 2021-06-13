@@ -48,6 +48,11 @@ https://roombook.pythonanywhere.com/
 * **Teknologi :** CSS, HTML, JavaScript, dan Python
 
 # **Hasil dan pembahasan**
+
+### **User Stories**
+* Sebagai RoomBook User , saya perlu memilih ruangan yang tersedia di platform sehingga saya dapat melakukan reservasi
+* Sebagai Pengembang Aplikasi Web RoomBook , kami ingin dapat memudahkan civitas IPB University dalam proses reservasi ruangan di IPB sehingga kami dapat membantu mencarikan ruangan di IPB University yang dapat direservasi untuk segala macam keperluan
+
 ### **Use Case Diagram**
 ![](https://imgur.com/YbKzxmr.png)
 
