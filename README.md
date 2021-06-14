@@ -103,7 +103,7 @@ https://roombook.pythonanywhere.com/
 ### **Fungsi CRUD**
 - User
 
-| CRUD | Verfied Use Case |
+| CRUD | Verified Use Case |
 | -------- | -------- | 
 | Create     | Membuat akun, membuat booking ruangan, membuat transaksi |
 | Read     | Membaca booking ruangan orang lain, melihat daftar ruangan, melihat daftar sejarah booking, melihat transaksi beserta statusnya |
@@ -112,7 +112,7 @@ https://roombook.pythonanywhere.com/
 
 - Person In Charge
 
-| CRUD | Verfied Use Case |
+| CRUD | Verified Use Case |
 | -------- | -------- | 
 | Create     | Membuat akun, membuat booking ruangan, membuat transaksi |
 | Read     | Membaca booking ruangan orang lain, melihat daftar ruangan, melihat daftar sejarah booking, melihat transaksi beserta statusnya |
@@ -121,7 +121,7 @@ https://roombook.pythonanywhere.com/
 
 - Admin
 
-| CRUD | Verfied Use Case |
+| CRUD | Verified Use Case |
 | -------- | -------- | 
 | Create     | Membuat ruangan baru, membuat akun Person In Charge untuk suatu ruangan |
 | Read     | Membaca daftar ruangan, booking ruangan tersebut, dan daftar transaksi ruangan tersebut |
